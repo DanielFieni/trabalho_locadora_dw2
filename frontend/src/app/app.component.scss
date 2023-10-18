@@ -1,0 +1,35 @@
+.example-container {
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  margin: 0;
+}
+
+.example-sidenav {
+  margin: 0;
+  padding: 64px 20px;
+  background-color: #2196F3;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px; /* Espaço vertical entre os botões */
+}
+
+.icon-menu {
+  margin-right: 15px;
+}
+
+.left-buttons {
+  display: flex;
+  align-items: center;
+}
+
+.right-buttons {
+  display: flex;
+  align-items: center;
+  margin-left: auto; /* Move os botões para a direita */
+}
+
+

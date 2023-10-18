@@ -1,0 +1,62 @@
+<mat-accordion class="expansion-panel">
+  <mat-expansion-panel (opened)="panelOpenState = true"
+                       (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Ator
+      </mat-panel-title>
+      <mat-panel-description>
+        Visualizar informações de Atores
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div class="content-container">
+      <p>Nessa aba será possível inserir, visualizar, editar e excluir as informações dos atores.</p>
+      <p>Os Atores possuem apenas um <strong>Nome</strong>.</p>
+      <div class="button-content">
+        <button mat-raised-button color="warn" (click)="pageAtor()">Acessar</button>
+      </div>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>
+
+<mat-accordion class="expansion-panel">
+  <mat-expansion-panel (opened)="panelOpenState = true"
+                       (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Classe
+      </mat-panel-title>
+      <mat-panel-description>
+        Visualizar informações de Classes
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div class="content-container">
+      <p>Nessa aba será possível inserir, visualizar, editar e excluir as informações das classes.</p>
+      <p>As classes possuem apenas um <strong>Nome</strong>, <strong>Valor</strong>, <strong>Prazo de devolução</strong>.</p>
+      <div class="button-content">
+        <button mat-raised-button color="warn" (click)="pageClasse()">Acessar</button>
+      </div>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>
+
+<mat-accordion class="expansion-panel">
+  <mat-expansion-panel (opened)="panelOpenState = true"
+                       (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Diretor
+      </mat-panel-title>
+      <mat-panel-description>
+        Visualizar informações dos Diretores
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div class="content-container">
+      <p>Nessa aba será possível inserir, visualizar, editar e excluir as informações dos Diretores.</p>
+      <p>Os Atores possuem apenas um <strong>Nome</strong>.</p>
+      <div class="button-content">
+        <button mat-raised-button color="warn" (click)="pageDiretor()">Acessar</button>
+      </div>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>
