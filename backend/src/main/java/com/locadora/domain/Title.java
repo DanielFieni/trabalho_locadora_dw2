@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @NoArgsConstructor
 @Getter
@@ -30,9 +32,17 @@ public class Title implements Serializable {
     @Column(name = "category")
     private String category;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_ator")
-    private Ator ator;
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "id_ator")
+//    private Ator ator;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "titulo_ator",
+            joinColumns = @JoinColumn(name = "titulo_id"),
+            inverseJoinColumns = @JoinColumn(name = "ator_id"),
+            schema = "locadora"
+    )
+    private List<Ator> atores = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_diretor")
@@ -47,7 +57,7 @@ public class Title implements Serializable {
         this.year = year;
         this.synopsis = synopsis;
         this.category = category;
-        this.ator = ator;
+        this.atores.add(ator);
         this.classe = classe;
         this.diretor = diretor;
     }

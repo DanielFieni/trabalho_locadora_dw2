@@ -31,6 +31,10 @@ export class AppComponent implements OnInit {
     this.router.navigate(["diretores"]);
   }
 
+  pageTitulos() {
+    this.router.navigate(['titulos']);
+  }
+
   ngOnInit(): void {
   }
 

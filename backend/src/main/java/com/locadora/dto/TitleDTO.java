@@ -6,6 +6,8 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -18,7 +20,7 @@ public class TitleDTO {
     private int year;
     private String synopsis;
     private String category;
-    private AtorDTO ator;
+    private List<AtorDTO> atores;
     private ClasseDTO classe;
     private DiretorDTO diretor;
 

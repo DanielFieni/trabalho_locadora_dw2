@@ -30,6 +30,10 @@ export class AccordationComponent implements OnInit {
     // window.location.reload();
   }
 
+  pageTitulos() {
+    this.router.navigate(['titulos']);
+  }
+
   pageDiretor() {
     this.router.navigate(["diretores"]);
   }

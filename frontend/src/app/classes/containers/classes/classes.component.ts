@@ -21,7 +21,7 @@ export class ClassesComponent implements OnInit {
   constructor(
     private classeService: ClasseService,
     private router: Router,
-    public dialog: MatDialog,
+    private dialog: MatDialog,
     private _snackBar: MatSnackBar,
   ) {
   }
@@ -42,7 +42,7 @@ export class ClassesComponent implements OnInit {
   }
 
   onAdd() {
-    this.router.navigate(['classes/new'])
+    this.router.navigate(['classes/new']);
   }
 
   onEdit(classe: Classe) {

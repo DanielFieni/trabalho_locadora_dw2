@@ -53,7 +53,6 @@ public class TitleService {
 
     private void verifyFieldsTitle(TitleDTO dto) {
 
-        atorService.getByIdAtor(dto.getAtor().getId());
         classeService.getByIdClasse(dto.getClasse().getId());
         diretorService.getByIdDiretor(dto.getDiretor().getId());
 
