@@ -7,6 +7,7 @@ import com.locadora.mapper.TitleMapper;
 import com.locadora.repository.TitleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -20,6 +21,7 @@ public class TitleService {
     private final ClasseService classeService;
     private final DiretorService diretorService;
 
+    @Transactional
     public TitleDTO insertTitle(TitleDTO dto) {
         verifyFieldsTitle(dto);
         Title title = titleMapper.toEntity(dto);

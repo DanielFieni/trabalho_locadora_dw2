@@ -19,6 +19,7 @@ public class TitleController {
 
     @PostMapping
     public ResponseEntity<TitleDTO> insert(@RequestBody TitleDTO dto) {
+        System.out.println(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(titleService.insertTitle(dto));
     }
 

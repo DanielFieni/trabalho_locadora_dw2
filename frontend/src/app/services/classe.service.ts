@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Classe } from '../models/classe';
@@ -11,8 +12,8 @@ export class ClasseService {
 
   constructor(private httpClient: HttpClient) {}
 
-  list() {
-    return this.httpClient.get(this.API);
+  list(): Observable<Classe[]> {
+    return this.httpClient.get<Classe[]>(this.API);
   }
 
   delete(id: string) {

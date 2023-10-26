@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Ator } from '../models/ator';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +12,8 @@ export class AtoresService {
 
   constructor(private httpClient: HttpClient) {}
 
-  list() {
-    return this.httpClient.get(this.API);
+  list(): Observable<Ator[]> {
+    return this.httpClient.get<Ator[]>(this.API);
   }
 
   save(ator: Partial<Ator>) {

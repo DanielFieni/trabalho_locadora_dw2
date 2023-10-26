@@ -6,10 +6,10 @@ export interface Titulo {
 
   _id: string;
   name: string;
-  ator: Ator[];
+  atores: Ator[];
   diretor: Diretor;
   year: string;
-  sinopsys: string;
+  synopsis: string;
   category: string;
   classe: Classe;
 

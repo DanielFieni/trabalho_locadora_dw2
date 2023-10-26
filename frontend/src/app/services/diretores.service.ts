@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Diretor } from '../models/diretor';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,8 @@ export class DiretoresService {
   constructor( private httpClient: HttpClient ) { }
 
 
-  list() {
-    return this.httpClient.get(this.API);
+  list(): Observable<Diretor[]> {
+    return this.httpClient.get<Diretor[]>(this.API);
   }
 
   delete(id: string) {

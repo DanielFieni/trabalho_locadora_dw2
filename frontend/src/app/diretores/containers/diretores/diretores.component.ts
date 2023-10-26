@@ -29,6 +29,7 @@ export class DiretoresComponent implements OnInit{
   ngOnInit(): void {
     this.getDiretoresList();
   }
+  
   getDiretoresList() {
     this.diretorService.list()
       .subscribe((res) => {
