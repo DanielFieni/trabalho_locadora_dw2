@@ -1,16 +1,15 @@
-import { Diretor } from './../../../models/diretor';
-import { DiretoresService } from './../../../services/diretores.service';
-import { Titulo } from './../../../models/titulo';
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, NonNullableFormBuilder, UntypedFormArray, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, NonNullableFormBuilder, UntypedFormArray } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Ator } from 'src/app/models/ator';
+import { Classe } from 'src/app/models/classe';
+import { AtoresService } from 'src/app/services/atores.service';
+import { ClasseService } from 'src/app/services/classe.service';
 import { FormService } from 'src/app/services/form.service';
 import { TituloService } from 'src/app/services/titulo.service';
-import { Classe } from 'src/app/models/classe';
-import { ClasseService } from 'src/app/services/classe.service';
-import { AtoresRoutingModule } from 'src/app/atores/atores-routing.module';
-import { AtoresService } from 'src/app/services/atores.service';
+import { Diretor } from './../../../models/diretor';
+import { Titulo } from './../../../models/titulo';
+import { DiretoresService } from './../../../services/diretores.service';
 
 @Component({
   selector: 'app-titulos-form',
@@ -23,9 +22,6 @@ export class TitulosFormComponent implements OnInit {
   diretores: Diretor[] = [];
   classes: Classe[] = [];
   atores: Ator[] = [];
-  diretorControl: FormControl = new FormControl();
-  classeControl: FormControl = new FormControl();
-  // atorControl: FormControl = new FormControl();
 
   constructor(
     private formBuilder: NonNullableFormBuilder,
@@ -40,18 +36,19 @@ export class TitulosFormComponent implements OnInit {
 
   ngOnInit(): void {
     const titulo: Titulo = this.route.snapshot.data['titulo'];
+
     this.form = this.formBuilder.group({
-      _Id: titulo._id,
-      name: titulo.name,
-      ator: this.formBuilder.array(this.retrieveAtor(titulo)),
-      year: [titulo.year],
-      synopsis: [titulo.synopsis],
-      category: [titulo.category],
-      classe: [titulo.classe],
-      diretor: [titulo.diretor]
+      _id: new FormControl(''),
+      name: new FormControl(''),
+      atores: new FormControl(''),
+      year: new FormControl(''),
+      synopsis: new FormControl(''),
+      category: new FormControl(''),
+      classe: new FormControl(''),
+      diretor: new FormControl(''),
     })
 
-    console.log(this.form.value);
+    if(titulo) this.form.patchValue(titulo);
 
     this.fillDiretores();
     this.fillClasses();
@@ -84,39 +81,23 @@ export class TitulosFormComponent implements OnInit {
   }
 
   private fillAtores() {
-    this.atorService.list()
-      .subscribe(
-        (ator: Ator[]) => {
-          this.atores.push(...ator);
-        },
-        error => {
-          this.formService.onError(error, "Erro ao carregar Atores");
-        }
-      );
-  }
-
-  private retrieveAtor(titulo: Titulo) {
-    const atores = [];
-    if(titulo?.atores) {
-      titulo.atores.forEach(ator => atores.push(this.createAtor(ator)));
-    } else {
-      atores.push(this.createAtor());
-    }
-    return atores;
-  }
-
-  private createAtor(ator: Ator = {_id: '', name: ''}) {
-    return this.formBuilder.group({
-      id: [ator._id],
-      name: [ator.name]
+    this.atorService.list().subscribe({
+      next: (ator: Ator[]) => {
+        this.atores.push(...ator);
+      },
+      error: error => {
+        this.formService.onError(error, "Erro ao carregar Atores");
+      }
     })
   }
+
 
   getErrorMessage(formField: string) {
     this.formService.getErrorMessage(formField, this.form);
   }
 
   onSubmit() {
+    // console.log(this.form.value);
     console.log(this.form.value);
     this.tituloService.save(this.form.value).subscribe(result => this.formService.onSuccess("Titulo"),
       error => {
@@ -130,7 +111,7 @@ export class TitulosFormComponent implements OnInit {
   }
 
   getAtorFormArray() {
-    return (this.form.get('ator') as FormArray).controls;
+    return (<UntypedFormArray>this.form.get('atores')).controls;
   }
 
 }

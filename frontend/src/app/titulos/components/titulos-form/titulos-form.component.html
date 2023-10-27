@@ -23,7 +23,7 @@
         <mat-label>Digite a Sinopse</mat-label>
         <input maxlength="40" matInput required formControlName="synopsis" #synopsis>
         <mat-error *ngIf="form.get('synopsis')?.invalid">{{ getErrorMessage('synopsis') }}</mat-error>
-        <mat-hint align="end">{{name.value.length || 0}} / 40</mat-hint>
+        <mat-hint align="end">{{synopsis.value.length || 0}} / 40</mat-hint>
       </mat-form-field>
 
       <mat-form-field class="full-width">
@@ -36,37 +36,36 @@
       <mat-form-field>
         <mat-label>Digite a Classe</mat-label>
         <mat-select formControlName="classe" required>
-          <ng-container *ngFor="let classe of classes">
-            <mat-option [value]="classe">
-              {{ classe.name }}
+          <ng-container *ngFor="let item of classes">
+            <mat-option [value]="item">
+              {{ item.name }}
             </mat-option>
           </ng-container>
         </mat-select>
-        <!-- <mat-error *ngIf="classeControl.hasError('required')">Please choose an Diretor</mat-error> -->
       </mat-form-field>
 
       <mat-form-field>
         <mat-label>Digite o Diretor</mat-label>
         <mat-select formControlName="diretor" required>
-          <ng-container *ngFor="let diretor of diretores">
-            <mat-option [value]="diretor">
-              {{diretor.name}}
+          <ng-container *ngFor="let item of diretores">
+            <mat-option [value]="item">
+              {{item.name}}
             </mat-option>
           </ng-container>
         </mat-select>
-        <!-- <mat-error *ngIf="diretorControl.hasError('required')">Please choose an Diretor</mat-error> -->
       </mat-form-field>
 
-      <!-- <mat-form-field>
-        <mat-label>Digite o Ator</mat-label>
-        <mat-select formControlName="ator" multiple required>
-          <ng-container *ngFor="let ator of atores">
-            <mat-option [value]="ator">
-              {{ator.name}}
+      <div>
+        <mat-form-field>
+          <mat-select matInput multiple placeholder="Select a Ator" formControlName="atores" required>
+            <mat-option *ngFor="let option of atores" [value]="option">
+                {{ option.name }}
             </mat-option>
-          </ng-container>
-        </mat-select>
-      </mat-form-field> -->
+          </mat-select>
+        </mat-form-field>
+    </div>
+
+    </mat-card-content>
 
       <!-- <mat-toolbar>
         <span>Atores</span>
@@ -95,25 +94,6 @@
         </tr>
 
       </table> -->
-
-      <ng-container
-        style="width: 100%"
-        formArrayName="ator"
-        *ngFor="let ator of atores; let i = index"
-      >
-        <mat-form-field>
-          <mat-label>Digite o Ator</mat-label>
-          <mat-select multiple required [formGroupName]="i">
-            <ng-container>
-              <mat-option [value]="ator">
-                {{ator.name}}
-              </mat-option>
-            </ng-container>
-          </mat-select>
-        </mat-form-field>
-      </ng-container>
-
-    </mat-card-content>
 
     <mat-card-actions class="botoes">
       <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="!form.valid">Salvar</button>

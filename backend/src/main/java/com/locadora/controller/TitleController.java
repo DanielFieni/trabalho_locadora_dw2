@@ -2,6 +2,7 @@ package com.locadora.controller;
 
 import com.locadora.dto.TitleDTO;
 import com.locadora.service.TitleService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,8 +19,7 @@ public class TitleController {
     private final TitleService titleService;
 
     @PostMapping
-    public ResponseEntity<TitleDTO> insert(@RequestBody TitleDTO dto) {
-        System.out.println(dto);
+    public ResponseEntity<TitleDTO> insert(@RequestBody @Valid TitleDTO dto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(titleService.insertTitle(dto));
     }
 

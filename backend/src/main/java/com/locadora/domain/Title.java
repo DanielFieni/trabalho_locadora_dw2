@@ -1,6 +1,7 @@
 package com.locadora.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,7 +21,8 @@ public class Title implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "name", columnDefinition = "varchar(100)")
+    @Column(name = "name", columnDefinition = "varchar(50)")
+    @Size(max = 50)
     private String name;
 
     @Column(name = "year", columnDefinition = "int")
@@ -29,12 +31,9 @@ public class Title implements Serializable {
     @Column(name = "synopsis")
     private String synopsis;
 
-    @Column(name = "category")
+    @Column(name = "category", columnDefinition = "varchar(50)")
     private String category;
 
-//    @ManyToOne(fetch = FetchType.EAGER)
-//    @JoinColumn(name = "id_ator")
-//    private Ator ator;
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "titulo_ator",
@@ -52,7 +51,7 @@ public class Title implements Serializable {
     @JoinColumn(name = "id_classe")
     private Classe classe;
 
-    public Title(int id, String name, int year, String synopsis, String category, Ator ator, Classe classe, Diretor diretor) {
+    public Title(String name, int year, String synopsis, String category, Ator ator, Classe classe, Diretor diretor) {
         this.name = name;
         this.year = year;
         this.synopsis = synopsis;
