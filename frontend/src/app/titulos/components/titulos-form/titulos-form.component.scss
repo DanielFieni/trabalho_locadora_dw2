@@ -22,4 +22,12 @@ mat-card {
   height: 100%;
 }
 
+.fieldSelect{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
 
+.fieldSelect mat-form-field{
+  width: 25%;
+}

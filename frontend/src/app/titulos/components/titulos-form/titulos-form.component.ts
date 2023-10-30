@@ -22,6 +22,7 @@ export class TitulosFormComponent implements OnInit {
   diretores: Diretor[] = [];
   classes: Classe[] = [];
   atores: Ator[] = [];
+  exists: boolean = false;
 
   constructor(
     private formBuilder: NonNullableFormBuilder,
@@ -48,12 +49,22 @@ export class TitulosFormComponent implements OnInit {
       diretor: new FormControl(''),
     })
 
+    this.exists = titulo._id !== undefined && titulo._id !== null;
+
     if(titulo) this.form.patchValue(titulo);
 
     this.fillDiretores();
     this.fillClasses();
     this.fillAtores();
 
+  }
+
+  getAtoresTituloList() {
+    return this.form.value.atores;
+  }
+
+  getClassesTituloList() {
+    return this.form.value.classe;
   }
 
   private fillDiretores() {
@@ -91,14 +102,11 @@ export class TitulosFormComponent implements OnInit {
     })
   }
 
-
   getErrorMessage(formField: string) {
     this.formService.getErrorMessage(formField, this.form);
   }
 
   onSubmit() {
-    // console.log(this.form.value);
-    console.log(this.form.value);
     this.tituloService.save(this.form.value).subscribe(result => this.formService.onSuccess("Titulo"),
       error => {
         this.formService.onError(error.error.message, "Titulo");
@@ -108,10 +116,6 @@ export class TitulosFormComponent implements OnInit {
 
   onCancel() {
     this.formService.cancel()
-  }
-
-  getAtorFormArray() {
-    return (<UntypedFormArray>this.form.get('atores')).controls;
   }
 
 }
