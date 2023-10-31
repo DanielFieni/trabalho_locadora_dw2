@@ -1,0 +1,69 @@
+<div class="table-container">
+
+  <mat-form-field>
+    <mat-label>Pesquisar Item</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Informe um número de Série" #input>
+  </mat-form-field>
+
+  <mat-table [dataSource]="items" class="mat-elevation-z8">
+
+    <!-- Id Column -->
+    <ng-container matColumnDef="_id">
+      <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
+      <mat-cell *matCellDef="let item"> {{item._id}} </mat-cell>
+    </ng-container>
+
+    <!-- Série Column -->
+    <ng-container matColumnDef="numSerie">
+      <mat-header-cell *matHeaderCellDef> Série </mat-header-cell>
+      <mat-cell *matCellDef="let item"> {{item.numSerie}} </mat-cell>
+    </ng-container>
+
+    <!-- dataPurchase Column -->
+    <ng-container matColumnDef="datePurchase">
+      <mat-header-cell *matHeaderCellDef> Data de Aquisição </mat-header-cell>
+      <mat-cell *matCellDef="let item"> {{item.datePurchase}} </mat-cell>
+    </ng-container>
+
+    <!-- Type Column -->
+    <ng-container matColumnDef="type">
+      <mat-header-cell *matHeaderCellDef> Tipo </mat-header-cell>
+      <mat-cell *matCellDef="let item"> {{item.type}} </mat-cell>
+    </ng-container>
+
+    <!-- Title Column -->
+    <ng-container matColumnDef="title">
+      <mat-header-cell *matHeaderCellDef> Título </mat-header-cell>
+      <mat-cell *matCellDef="let item"> {{item.title.name}} </mat-cell>
+    </ng-container>
+
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef class="action-column action-column-header">
+        <button mat-mini-fab color="primary" aria-label="Adicionar item" (click)="onAdd()">
+          <mat-icon>add</mat-icon>
+        </button>
+      </mat-header-cell>
+
+      <mat-cell *matCellDef="let item" class="action-column">
+        <button mat-icon-button color="accent" aria-label="Editar item" (click)="onEdit(item)">
+          <mat-icon>edit</mat-icon>
+        </button>
+
+        <button mat-icon-button color="warn" aria-label="Excluir item" (click)="onDelete(item)">
+          <mat-icon>delete</mat-icon>
+        </button>
+
+      </mat-cell>
+
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+    </tr>
+
+  </mat-table>
+</div>

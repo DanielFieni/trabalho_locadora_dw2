@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Titulo } from '../models/titulo';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +12,8 @@ export class TituloService {
 
   constructor(private httpClient: HttpClient) { }
 
-  list() {
-    return this.httpClient.get(this.API);
+  list(): Observable<Titulo[]> {
+    return this.httpClient.get<Titulo[]>(this.API);
   }
 
   delete(id: string) {

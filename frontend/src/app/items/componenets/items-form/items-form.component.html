@@ -1,0 +1,59 @@
+<mat-card>
+
+  <mat-toolbar color="primary">
+    Detalhes do Item
+  </mat-toolbar>
+
+  <form [formGroup]="form" class="min-width" >
+    <mat-card-content>
+      <mat-form-field class="full-width">
+        <mat-label>Digite o número de Série</mat-label>
+        <input maxlength="40" matInput required formControlName="numSerie" #numSerie>
+        <mat-error *ngIf="form.get('numSerie')?.invalid">{{ getErrorMessage('numSerie') }}</mat-error>
+        <mat-hint align="end">{{numSerie.value.length || 0}} / 40</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Digite a Data de Aquisição</mat-label>
+        <input matInput required formControlName="datePurchase" #datePurchase>
+        <mat-error *ngIf="form.get('datePurchase')?.invalid">{{ getErrorMessage('datePurchase') }}</mat-error>
+        <mat-hint align="end">{{datePurchase.value.length || 0}} / 40</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Selecione um tipo</mat-label>
+        <mat-select formControlName="type">
+          <mat-option value="DVD">DVD</mat-option>
+          <mat-option value="Fita">Fita</mat-option>
+          <mat-option value="BlueRay">BlueRay</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <ng-container *ngIf="exists">
+        <mat-form-field style="width: 50%;" formControlName="title">
+          <mat-label>Título Atual</mat-label>
+          <input matInput disabled [value]="getNameTitle()">
+        </mat-form-field>
+      </ng-container>
+
+      <mat-form-field [ngStyle]="{'width': !exists ? '100%' : '50%'}">
+        <mat-label>Selecionar o Título</mat-label>
+        <mat-select formControlName="title" required>
+          <ng-container *ngFor="let item of titles">
+            <mat-option [value]="item">
+              {{item.name}}
+            </mat-option>
+          </ng-container>
+        </mat-select>
+      </mat-form-field>
+
+    </mat-card-content>
+
+    <mat-card-actions class="botoes">
+      <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="!form.valid">Salvar</button>
+      <button mat-button (click)="onCancel()" >Cancelar</button>
+    </mat-card-actions>
+
+  </form>
+
+</mat-card>

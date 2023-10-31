@@ -24,8 +24,6 @@ export class ClassesFormComponent implements OnInit {
   constructor(
     private formBuilder: NonNullableFormBuilder,
     private classeService: ClasseService,
-    private _snackBar: MatSnackBar,
-    private location: Location,
     private route: ActivatedRoute,
     private formService: FormService,
   ){
