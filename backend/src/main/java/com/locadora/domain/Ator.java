@@ -1,5 +1,6 @@
 package com.locadora.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -23,13 +24,8 @@ public class Ator implements Serializable {
     @Column(name = "nome", columnDefinition = "varchar(40)")
     private String name;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "id")
-    private List<Title> listTitle = new ArrayList<>();
-
-    public Ator(int id, String name) {
-        this.id = id;
-        this.name = name;
-    }
+//    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "atores")
+//    @JsonIgnore
+//    private List<Title> listTitle = new ArrayList<>();
 
 }

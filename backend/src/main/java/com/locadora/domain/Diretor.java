@@ -24,10 +24,6 @@ public class Diretor implements Serializable {
     @Column(name = "nome")
     private String name;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "Id")
-    private List<Title> listTitle = new ArrayList<>();
-
     public Diretor(int id, String name) {
         this.id = id;
         this.name = name;

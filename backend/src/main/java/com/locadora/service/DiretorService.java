@@ -30,7 +30,7 @@ public class DiretorService {
 
     public void deleteDiretor(int id) {
         Diretor diretor = findByIdDiretor(id);
-        checkIsTitleListIsEmpty(diretor.getListTitle());
+//        checkIsTitleListIsEmpty(diretor.getListTitle());
         diretorRepository.delete(diretor);
     }
 

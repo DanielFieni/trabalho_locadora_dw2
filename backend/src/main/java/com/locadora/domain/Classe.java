@@ -29,15 +29,4 @@ public class Classe implements Serializable {
     @Column(name = "prazoDevolucao")
     private int prazoDevolucao;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "id")
-    private List<Title> listTitle = new ArrayList<>();
-
-    public Classe(int id, String name, double valor, int prazoDevolucao) {
-        this.name = name;
-        this.valor = valor;
-        this.prazoDevolucao = prazoDevolucao;
-        this.id = id;
-    }
-
 }

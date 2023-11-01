@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, NonNullableFormBuilder, UntypedFormArray } from '@angular/forms';
+import { FormControl, FormGroup, NonNullableFormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Ator } from 'src/app/models/ator';
 import { Classe } from 'src/app/models/classe';
@@ -22,6 +22,7 @@ export class TitulosFormComponent implements OnInit {
   diretores: Diretor[] = [];
   classes: Classe[] = [];
   atores: Ator[] = [];
+  titulo: Titulo = {} as Titulo;
   exists: boolean = false;
 
   constructor(
@@ -33,11 +34,10 @@ export class TitulosFormComponent implements OnInit {
     private classeService: ClasseService,
     private atorService: AtoresService,
   ) {
+    this.titulo = this.route.snapshot.data['titulo']
   }
 
   ngOnInit(): void {
-    const titulo: Titulo = this.route.snapshot.data['titulo'];
-
     this.form = this.formBuilder.group({
       _id: new FormControl(''),
       name: new FormControl(''),
@@ -49,9 +49,9 @@ export class TitulosFormComponent implements OnInit {
       diretor: new FormControl(''),
     })
 
-    this.exists = titulo._id !== undefined && titulo._id !== null;
+    this.exists = this.titulo._id !== undefined && this.titulo._id !== null;
 
-    if(titulo) this.form.patchValue(titulo);
+    if(this.titulo) this.form.patchValue(this.titulo);
 
     this.fillDiretores();
     this.fillClasses();
@@ -68,38 +68,54 @@ export class TitulosFormComponent implements OnInit {
   }
 
   private fillDiretores() {
-    this.diretorService.list()
-      .subscribe(
-        (diretor: Diretor[]) => {
-          this.diretores.push(...diretor)
-        },
-        error => {
-          this.formService.onError(error, "Erro ao carregar Diretores");
-        }
-      );
+    this.diretorService.list().subscribe({
+      next: (diretor: Diretor[]) => {
+        this.diretores.push(...diretor);
+        let value: Diretor = {} as Diretor;
+        this.diretores.forEach(diretor => {
+          const add = this.titulo.diretor = diretor;
+          if(add) value = add;
+        })
+        this.form.controls['diretor'].setValue(value);
+      },
+      error: error => {
+        this.formService.onError(error, "Erro ao carregar Diretores");
+      }
+    });
   }
 
   private fillClasses() {
-    this.classeService.list()
-      .subscribe(
-        (classe: Classe[]) => {
-          this.classes.push(...classe)
-        },
-        error => {
-          this.formService.onError(error, "Erro ao carregar Classes");
-        }
-      );
+    this.classeService.list().subscribe({
+      next: (classe: Classe[]) => {
+        this.classes.push(...classe)
+        let value: Classe = {} as Classe
+        this.classes.forEach(classe => {
+          const add = this.titulo.classe = classe;
+          if(add) value = add;
+        })
+        this.form.controls['classe'].setValue(value);
+      },
+      error: error => {
+        this.formService.onError(error, "Erro ao carregar Classes");
+      }
+    });
   }
 
   private fillAtores() {
     this.atorService.list().subscribe({
-      next: (ator: Ator[]) => {
-        this.atores.push(...ator);
+      next: (atores: Ator[]) => {
+        const values: Ator[] = [];
+        this.atores.push(...atores);
+        this.titulo.atores.forEach( ator => {
+          const add = this.atores.find(a2 => a2._id === ator._id);
+          if(add) values.push(add);
+        })
+        this.form.controls['atores'].setValue(values);
       },
       error: error => {
         this.formService.onError(error, "Erro ao carregar Atores");
       }
-    })
+    });
   }
 
   getErrorMessage(formField: string) {
@@ -107,6 +123,7 @@ export class TitulosFormComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log(this.form.value)
     this.tituloService.save(this.form.value).subscribe(result => this.formService.onSuccess("Titulo"),
       error => {
         this.formService.onError(error.error.message, "Titulo");

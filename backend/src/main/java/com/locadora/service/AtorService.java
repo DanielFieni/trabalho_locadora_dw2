@@ -30,7 +30,7 @@ public class AtorService {
 
     public void deleteAtor(int id) {
         Ator ator = findByIdAtor(id);
-        checkIfTitleListIsEmpty(ator.getListTitle());
+//        checkIfTitleListIsEmpty(ator.getListTitle());
         atorRepository.delete(ator);
     }
 

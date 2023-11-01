@@ -30,7 +30,7 @@ public class ClasseService {
 
     public void deleteClasse(int id) {
         Classe classe = findByIdClasse(id);
-        checkIfTitleIsEmpty(classe.getListTitle());
+//        checkIfTitleIsEmpty(classe.getListTitle());
         classeRepository.delete(classe);
     }
 

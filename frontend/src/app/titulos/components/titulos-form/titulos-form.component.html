@@ -69,37 +69,16 @@
           <mat-form-field>
             <mat-label>Selecionar Ator(es)</mat-label>
             <mat-select multiple formControlName="atores" required>
-              <mat-option *ngFor="let option of getAtoresTituloList()" [value]="option">
+              <mat-option *ngFor="let option of atores" [value]="option">
                 {{ option.name }}
-            </mat-option>
+              </mat-option>
             </mat-select>
           </mat-form-field>
         </ng-container>
+
       </div>
 
-      <mat-toolbar>
-        <span>Atores</span>
-        <button mat-icon-button color="accent">
-          <mat-icon aria-label="Adicionar um novo Ator">add</mat-icon>
-        </button>
-      </mat-toolbar>
-
     </mat-card-content>
-
-      <table
-        style="width: 100%"
-        *ngFor="let ator of getAtoresTituloList();"
-      >
-        <tr>
-          <td>
-            <mat-form-field class="example-full-width" style="width: 100%;">
-              <mat-label>Company (disabled)</mat-label>
-              <input matInput disabled [value]="ator.name">
-            </mat-form-field>
-          </td>
-        </tr>
-
-      </table>
 
     <mat-card-actions class="botoes">
       <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="!form.valid">Salvar</button>

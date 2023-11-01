@@ -48,21 +48,11 @@ public class Title implements Serializable {
     private List<Ator> atores = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_diretor")
+    @JoinColumn(name = "id_diretor", nullable = false)
     private Diretor diretor;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_classe")
+    @JoinColumn(name = "id_classe", nullable = false)
     private Classe classe;
-
-    public Title(String name, int year, String synopsis, String category, Ator ator, Classe classe, Diretor diretor) {
-        this.name = name;
-        this.year = year;
-        this.synopsis = synopsis;
-        this.category = category;
-        this.atores.add(ator);
-        this.classe = classe;
-        this.diretor = diretor;
-    }
 
 }
