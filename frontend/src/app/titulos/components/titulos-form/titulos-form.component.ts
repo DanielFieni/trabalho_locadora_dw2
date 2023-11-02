@@ -72,10 +72,8 @@ export class TitulosFormComponent implements OnInit {
       next: (diretor: Diretor[]) => {
         this.diretores.push(...diretor);
         let value: Diretor = {} as Diretor;
-        this.diretores.forEach(diretor => {
-          const add = this.titulo.diretor = diretor;
-          if(add) value = add;
-        })
+        const add = this.diretores.find(d1 => d1._id === this.titulo.diretor._id)
+        if(add) value = add;
         this.form.controls['diretor'].setValue(value);
       },
       error: error => {
@@ -88,11 +86,9 @@ export class TitulosFormComponent implements OnInit {
     this.classeService.list().subscribe({
       next: (classe: Classe[]) => {
         this.classes.push(...classe)
-        let value: Classe = {} as Classe
-        this.classes.forEach(classe => {
-          const add = this.titulo.classe = classe;
-          if(add) value = add;
-        })
+        let value: Classe = {} as Classe;
+        const add = this.classes.find(c1 => c1._id === this.form.value.classe._id);
+        if(add) value = add
         this.form.controls['classe'].setValue(value);
       },
       error: error => {
