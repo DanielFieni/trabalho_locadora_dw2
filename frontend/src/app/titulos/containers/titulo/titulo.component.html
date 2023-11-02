@@ -46,6 +46,11 @@
       </mat-header-cell>
 
       <mat-cell *matCellDef="let titulo" class="action-column">
+
+        <button mat-icon-button color="primary" aria-label="Title description" (click)="dialogDescription(titulo)">
+          <mat-icon>description</mat-icon>
+        </button>
+
         <button mat-icon-button color="accent" aria-label="Editar titulo" (click)="onEdit(titulo)">
           <mat-icon>edit</mat-icon>
         </button>

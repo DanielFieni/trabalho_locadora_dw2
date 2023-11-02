@@ -1,0 +1,66 @@
+<mat-toolbar color="primary">
+  <h1 mat-dialog-title >Descricao do título: {{ data.name }}</h1>
+</mat-toolbar>
+<div mat-dialog-content>
+
+    <div class="first-line">
+      <div class="title-name">
+        Nome:
+        <mat-card>
+          <mat-card-content>{{data.name}}</mat-card-content>
+        </mat-card>
+      </div>
+
+      <div class="title-year">
+        Ano:
+        <mat-card>
+          <mat-card-content>{{data.year}}</mat-card-content>
+        </mat-card>
+      </div>
+
+      <div class="title-category">
+        Category:
+        <mat-card>
+          <mat-card-content>{{data.category}}</mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+
+    <div class="first-line">
+      <div class="titulo-atores">
+        Atores:
+        <ng-container *ngFor="let ator of data.atores">
+          <mat-card>
+            <mat-card-content>{{ator.name}}</mat-card-content>
+          </mat-card>
+        </ng-container>
+      </div>
+
+      <div class="titulo-classe">
+        Classe:
+        <mat-card>
+          <mat-card-content>{{data.classe.name}}</mat-card-content>
+        </mat-card>
+      </div>
+
+      <div class="titulo-diretor">
+        Diretor:
+        <mat-card>
+          <mat-card-content>{{data.diretor.name}}</mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+
+    <div class="first-line">
+      <div class="title-synopsis" style="width: 100%;">
+          Sinopse:
+        <mat-card>
+          <mat-card-content>{{data.synopsis}}</mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onConfirm(false)" color="primary">Fechar</button>
+</div>

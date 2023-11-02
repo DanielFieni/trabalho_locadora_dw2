@@ -1,0 +1,12 @@
+mat-toolbar h1 {
+  color: white;
+}
+
+.first-line{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  text-align: left;
+  align-items: flex-start;
+  margin: 20px -10px;
+}

@@ -24,8 +24,4 @@ public class Ator implements Serializable {
     @Column(name = "nome", columnDefinition = "varchar(40)")
     private String name;
 
-//    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "atores")
-//    @JsonIgnore
-//    private List<Title> listTitle = new ArrayList<>();
-
 }

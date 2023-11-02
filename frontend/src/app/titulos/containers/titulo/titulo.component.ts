@@ -1,3 +1,4 @@
+import { AutofillMonitor } from '@angular/cdk/text-field';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -7,6 +8,7 @@ import { Titulo } from 'src/app/models/titulo';
 import { TituloService } from 'src/app/services/titulo.service';
 import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmation-dialog/confirmation-dialog.component';
 import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog.component';
+import { InformationDialogComponent } from 'src/app/shared/components/information-dialog/information-dialog.component';
 
 @Component({
   selector: 'app-titulo',
@@ -83,6 +85,12 @@ export class TituloComponent implements OnInit{
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.titulos.filter = filterValue.trim().toLowerCase();
+  }
+
+  dialogDescription(titulo: Titulo) {
+    this.dialog.open(InformationDialogComponent, {
+      data: titulo,
+    })
   }
 
 }
