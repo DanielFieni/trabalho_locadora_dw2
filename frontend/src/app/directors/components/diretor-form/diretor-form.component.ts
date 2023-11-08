@@ -36,7 +36,7 @@ export class DirectorFormComponent implements OnInit {
   onSubmit() {
     this.directorService.save(this.form.value).subscribe({
       next: result => this.formService.onSuccess("Diretor"),
-      error: error => this.formService.onError(error.error.message, "Diretor")
+      error: error => this.formService.onError(error.error, "Diretor")
     })
   }
 

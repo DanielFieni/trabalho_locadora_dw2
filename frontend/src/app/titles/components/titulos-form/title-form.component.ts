@@ -122,7 +122,7 @@ export class TitleFormComponent implements OnInit {
     console.log(this.form.value)
     this.titleService.save(this.form.value).subscribe({
       next: result => this.formService.onSuccess("Titulo"),
-      error: error => this.formService.onError(error.error.message, "Titulo")
+      error: error => this.formService.onError(error.error, "Titulo")
     })
   }
 

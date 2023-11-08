@@ -51,4 +51,7 @@ public class Title implements Serializable {
     @JoinColumn(name = "class_id", nullable = false)
     private Class aClass;
 
+    @OneToMany(mappedBy = "title")
+    private List<Item> items;
+
 }

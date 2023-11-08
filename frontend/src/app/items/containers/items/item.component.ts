@@ -53,7 +53,7 @@ export class ItemComponent implements OnInit {
               horizontalPosition: 'center',
              });
           },
-          error: error => this.onError("Error ao tentar remover item")
+          error: error => this.onError(error.error)
         });
       }
     });

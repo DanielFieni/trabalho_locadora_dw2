@@ -15,30 +15,30 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ActorService {
 
-    private final ActorRepository ActorRepository;
-    private final ActorMapper ActorMapper;
+    private final ActorRepository actorRepository;
+    private final ActorMapper actorMapper;
 
     public ActorDTO insertActor(ActorDTO dto) {
         verifyNameEmpty(dto.getName());
-        Actor Actor = ActorMapper.toEntity(dto);
-        return ActorMapper.toDTO(ActorRepository.save(Actor));
+        Actor actor = actorMapper.toEntity(dto);
+        return actorMapper.toDTO(actorRepository.save(actor));
     }
 
     public List<ActorDTO> getAllActor() {
-        return ActorMapper.toDTO(ActorRepository.findAllByOrderByName());
+        return actorMapper.toDTO(actorRepository.findAllByOrderByName());
     }
 
     public void deleteActor(int id) {
-        Actor Actor = findByIdActor(id);
-//        checkIfTitleListIsEmpty(Actor.getListTitle());
-        ActorRepository.delete(Actor);
+        Actor actor = findByIdActor(id);
+        checkIfTitleListIsEmpty(actor.getTitles());
+        actorRepository.delete(actor);
     }
 
     public ActorDTO updateActor(int id, ActorDTO dto) {
         verifyNameEmpty(dto.getName());
         findByIdActor(id);
-        Actor Actor = ActorMapper.toEntity(dto);
-        return ActorMapper.toDTO(ActorRepository.save(Actor));
+        Actor actor = actorMapper.toEntity(dto);
+        return actorMapper.toDTO(actorRepository.save(actor));
     }
 
     private void verifyNameEmpty(String name) {
@@ -48,16 +48,17 @@ public class ActorService {
     }
 
     public ActorDTO getByIdActor(int id) {
-        return ActorMapper.toDTO(findByIdActor(id));
+        return actorMapper.toDTO(findByIdActor(id));
     }
 
     private Actor findByIdActor(int id) {
-        return ActorRepository.findById(id).orElseThrow(() -> new RegraNegocioException("Ator não encontrado"));
+        return actorRepository.findById(id).orElseThrow(() -> new RegraNegocioException("Ator não encontrado"));
     }
 
     private void checkIfTitleListIsEmpty(List<Title> titleList) {
-        if(!titleList.isEmpty())
+        if(!titleList.isEmpty()) {
             throw new RegraNegocioException("O Ator não deve estar ligado a nenhum Título para ser excluído");
+        }
     }
 
 }

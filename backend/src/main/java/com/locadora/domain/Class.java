@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @NoArgsConstructor
 @Getter
@@ -26,5 +28,8 @@ public class Class implements Serializable {
 
     @Column(name = "returnDate")
     private int returnDate;
+
+    @OneToMany(mappedBy = "aClass")
+    private List<Title> titles = new ArrayList<>();
 
 }

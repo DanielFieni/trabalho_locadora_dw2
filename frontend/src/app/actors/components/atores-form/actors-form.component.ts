@@ -36,10 +36,8 @@ export class ActorsFormComponent implements OnInit {
 
   onSubmit() {
     this.actorService.save(this.form.value).subscribe({
-      next: (result) => {
-        this.formService.onSuccess("Actor")
-      },
-      error: error => {this.formService.onError(error.error.message, "Ator")}
+      next: result => this.formService.onSuccess("Ator"),
+      error: error => {this.formService.onError(error.error, "Ator")}
     })
   }
 

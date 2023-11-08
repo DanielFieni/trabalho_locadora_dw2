@@ -73,7 +73,7 @@ export class DirectorsComponent implements OnInit{
                horizontalPosition: 'center',
               });
           },
-          error => this.onError("Erro ao tentar remover Diretor(a)")
+          error => this.onError(error.error)
         )
       }
     });

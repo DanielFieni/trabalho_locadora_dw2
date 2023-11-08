@@ -71,7 +71,7 @@ export class ActorsComponent implements OnInit{
                horizontalPosition: 'center',
               });
           },
-          error => this.onError("Erro ao tentar remover Ator")
+          error => this.onError(error.error)
         )
       }
     });

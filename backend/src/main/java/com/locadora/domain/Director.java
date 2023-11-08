@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @NoArgsConstructor
 @Getter
@@ -20,5 +22,8 @@ public class Director implements Serializable {
 
     @Column(name = "name")
     private String name;
+
+    @OneToMany(mappedBy = "director")
+    List<Title> titles = new ArrayList<>();
 
 }

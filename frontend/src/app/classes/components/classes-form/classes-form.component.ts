@@ -38,11 +38,10 @@ export class ClassesFormComponent implements OnInit {
   }
 
   onSubmit() {
-    this.classService.save(this.form.value).subscribe(result => this.formService.onSuccess("Classe"),
-      error => {
-        this.formService.onError(error.error.message, "Classe");
-      }
-    )
+    this.classService.save(this.form.value).subscribe({
+      next: result => this.formService.onSuccess("Classe"),
+      error: error => this.formService.onError(error.error, "Classe")
+    })
   }
 
   onCancel() {

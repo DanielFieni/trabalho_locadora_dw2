@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
+import java.util.List;
 
 @NoArgsConstructor
 @Getter
@@ -20,5 +21,8 @@ public class Actor implements Serializable {
 
     @Column(name = "name", columnDefinition = "varchar(40)")
     private String name;
+
+    @ManyToMany(mappedBy = "actors")
+    private List<Title> titles;
 
 }

@@ -1,5 +1,6 @@
 package com.locadora.service;
 
+import com.locadora.domain.Item;
 import com.locadora.domain.Title;
 import com.locadora.dto.TitleDTO;
 import com.locadora.exception.RegraNegocioException;
@@ -43,7 +44,15 @@ public class TitleService {
     }
 
     public void deleteTitle(int id){
+        Title title = findByIdTitle(id);
+        checkIsItemListIsEmpty(title.getItems());
         titleRepository.delete(findByIdTitle(id));
+    }
+
+    private void checkIsItemListIsEmpty(List<Item> items) {
+        if(!items.isEmpty()) {
+            throw new RegraNegocioException("O Título não deve estar ligado a nenhum Item para ser excluído");
+        }
     }
 
     private Title findByIdTitle(int id) {

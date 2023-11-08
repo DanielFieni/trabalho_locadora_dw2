@@ -67,7 +67,7 @@ export class TitleComponent implements OnInit{
               horizontalPosition: 'center',
             });
           },
-          error => this.onError("Erro ao tentar remover Título")
+          error => this.onError(error.error)
         )
       }
     });
