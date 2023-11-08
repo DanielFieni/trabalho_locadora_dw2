@@ -15,11 +15,11 @@ export class AppComponent implements OnInit {
     private router: Router,
   ) {}
 
-  pageAtor() {
-    this.router.navigate(['atores']);
+  pageActor() {
+    this.router.navigate(['actors']);
   }
 
-  pageClasse() {
+  pageClass() {
     this.router.navigate(['classes'])
   }
 
@@ -27,12 +27,16 @@ export class AppComponent implements OnInit {
     this.router.navigate(['']);
   }
 
-  pageDiretor() {
-    this.router.navigate(["diretores"]);
+  pageDirector() {
+    this.router.navigate(["directors"]);
   }
 
-  pageTitulos() {
-    this.router.navigate(['titulos']);
+  pageTitle() {
+    this.router.navigate(['titles']);
+  }
+
+  pageItem() {
+    this.router.navigate(['items']);
   }
 
   ngOnInit(): void {

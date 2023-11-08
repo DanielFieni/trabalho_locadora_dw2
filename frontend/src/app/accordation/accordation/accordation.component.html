@@ -80,3 +80,24 @@
     </div>
   </mat-expansion-panel>
 </mat-accordion>
+
+<mat-accordion class="expansion-panel">
+  <mat-expansion-panel (opened)="panelOpenState = true"
+                       (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Item
+      </mat-panel-title>
+      <mat-panel-description>
+        Visualizar informações dos Items
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div class="content-container">
+      <p>Nessa aba será possível inserir, visualizar, editar e excluir as informações dos Item.</p>
+      <p>Os items possuem as seguintes informações: <strong>Nome</strong>, <strong>Diretor</strong>, <strong>Ano</strong>, <strong>Categoria</strong>, <strong>Classe</strong></p>
+      <div class="button-content">
+        <button mat-raised-button color="warn" (click)="pageTitulos()">Acessar</button>
+      </div>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>
