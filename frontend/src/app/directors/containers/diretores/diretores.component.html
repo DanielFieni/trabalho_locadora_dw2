@@ -1,0 +1,45 @@
+<div class="table-container">
+
+  <mat-form-field>
+    <mat-label>Pesquisar Diretor</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Informe um nome" #input>
+  </mat-form-field>
+
+  <mat-table [dataSource]="directors" class="mat-elevation-z8">
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+      <mat-cell *matCellDef="let director"> {{director.name}} </mat-cell>
+    </ng-container>
+
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef class="action-column action-column-header">
+        <button mat-mini-fab color="primary" aria-label="Adicionar Diretor" (click)="onAdd()">
+          <mat-icon>add</mat-icon>
+        </button>
+      </mat-header-cell>
+
+      <mat-cell *matCellDef="let director" class="action-column">
+        <button mat-icon-button color="accent" aria-label="Editar Diretor" (click)="onEdit(director._id)" >
+          <mat-icon>edit</mat-icon>
+        </button>
+
+        <button mat-icon-button color="warn" aria-label="Excluir Diretor" (click)="onDelete(director)" >
+          <mat-icon>delete</mat-icon>
+        </button>
+
+      </mat-cell>
+
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+    </tr>
+
+  </mat-table>
+</div>

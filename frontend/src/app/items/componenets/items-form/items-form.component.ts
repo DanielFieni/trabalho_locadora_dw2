@@ -1,11 +1,11 @@
-import { Titulo } from './../../../models/titulo';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Item } from 'src/app/models/item';
 import { FormService } from 'src/app/services/form.service';
 import { ItemService } from 'src/app/services/item.service';
-import { TituloService } from 'src/app/services/titulo.service';
+import { TitleService } from 'src/app/services/title.service';
+import { Title } from '../../../models/title';
 
 @Component({
   selector: 'app-items-form',
@@ -15,7 +15,7 @@ import { TituloService } from 'src/app/services/titulo.service';
 export class ItemsFormComponent implements OnInit {
 
   form!: FormGroup;
-  titles: Titulo[] = [];
+  titles: Title[] = [];
   exists: boolean = false;
 
   constructor(
@@ -23,7 +23,7 @@ export class ItemsFormComponent implements OnInit {
     private itemService: ItemService,
     private route: ActivatedRoute,
     private formService: FormService,
-    private titleService: TituloService,
+    private titleService: TitleService,
   ){}
 
   ngOnInit(): void {
@@ -49,7 +49,7 @@ export class ItemsFormComponent implements OnInit {
 
   private fillTitles() {
     this.titleService.list().subscribe({
-      next: (title: Titulo[]) => {
+      next: (title: Title[]) => {
         this.titles.push(...title);
       },
       error: error => {

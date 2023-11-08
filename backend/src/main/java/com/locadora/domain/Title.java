@@ -1,9 +1,5 @@
 package com.locadora.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
@@ -40,19 +36,19 @@ public class Title implements Serializable {
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
-            name = "titulo_ator",
-            joinColumns = @JoinColumn(name = "titulo_id"),
-            inverseJoinColumns = @JoinColumn(name = "ator_id"),
+            name = "title_actor",
+            joinColumns = @JoinColumn(name = "title_id"),
+            inverseJoinColumns = @JoinColumn(name = "actor_id"),
             schema = "locadora"
     )
-    private List<Ator> atores = new ArrayList<>();
+    private List<Actor> actors = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_diretor", nullable = false)
-    private Diretor diretor;
+    @JoinColumn(name = "director_id", nullable = false)
+    private Director director;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_classe", nullable = false)
-    private Classe classe;
+    @JoinColumn(name = "class_id", nullable = false)
+    private Class aClass;
 
 }

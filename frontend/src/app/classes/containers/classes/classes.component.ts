@@ -1,12 +1,12 @@
-import { Classe } from '../../../models/classe';
 import { Component, OnInit } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
-import { ClasseService } from '../../../services/classe.service';
-import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmation-dialog/confirmation-dialog.component';
 import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog.component';
+import { Class } from '../../../models/class';
+import { ClassService } from '../../../services/class.service';
 
 @Component({
   selector: 'app-classes',
@@ -15,11 +15,11 @@ import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/err
 })
 export class ClassesComponent implements OnInit {
 
-  displayedColumns = ['_id', 'name', 'valor', 'prazoDevolucao', 'actions']
-  classes!: MatTableDataSource<Classe>
+  displayedColumns = ['name', 'valueClass', 'returnDate', 'actions']
+  classes!: MatTableDataSource<Class>
 
   constructor(
-    private classeService: ClasseService,
+    private classeService: ClassService,
     private router: Router,
     private dialog: MatDialog,
     private _snackBar: MatSnackBar,
@@ -27,13 +27,13 @@ export class ClassesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getClasseList();
+    this.getClassList();
   }
 
-  getClasseList() {
+  getClassList() {
     this.classeService.list().subscribe(
       (res) => {
-        this.classes = new MatTableDataSource(res as Classe[])
+        this.classes = new MatTableDataSource(res as Class[])
       },
       (error) => {
         this.onError("Error ao carregar Classes");
@@ -45,11 +45,11 @@ export class ClassesComponent implements OnInit {
     this.router.navigate(['classes/new']);
   }
 
-  onEdit(classe: Classe) {
+  onEdit(classe: Class) {
     this.router.navigate(['classes/edit/', classe._id]);
   }
 
-  onDelete(classe: Classe) {
+  onDelete(classe: Class) {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       data: "Tem certeza que deseja remover o(a): " + classe.name,
     });
@@ -58,7 +58,7 @@ export class ClassesComponent implements OnInit {
       if(result) {
         this.classeService.delete(classe._id).subscribe(
           () => {
-            this.getClasseList(),
+            this.getClassList(),
             this._snackBar.open("Classe deletada com Sucesso", 'X', {
                duration: 4000,
                verticalPosition: 'top',

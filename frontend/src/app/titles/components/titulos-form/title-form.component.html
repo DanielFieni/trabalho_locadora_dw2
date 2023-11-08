@@ -1,0 +1,90 @@
+<mat-card>
+
+  <mat-toolbar color="primary">
+    Detalhes da Classe
+  </mat-toolbar>
+
+  <form [formGroup]="form" class="min-width" >
+    <mat-card-content>
+      <mat-form-field class="full-width">
+        <mat-label>Digite o nome</mat-label>
+        <input maxlength="40" matInput required formControlName="name" #name>
+        <mat-error *ngIf="form.get('name')?.invalid">{{ getErrorMessage('name') }}</mat-error>
+        <mat-hint align="end">{{name.value.length || 0}} / 40</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Digite o Ano</mat-label>
+        <input type="number" matInput required formControlName="year">
+        <mat-error *ngIf="form.get('year')?.invalid">{{ getErrorMessage('year') }}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Digite a Sinopse</mat-label>
+        <input maxlength="40" matInput required formControlName="synopsis" #synopsis>
+        <mat-error *ngIf="form.get('synopsis')?.invalid">{{ getErrorMessage('synopsis') }}</mat-error>
+        <mat-hint align="end">{{synopsis.value.length || 0}} / 40</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Digite a Categoria</mat-label>
+        <input maxlength="40" matInput required formControlName="category" #category>
+        <mat-error *ngIf="form.get('category')?.invalid">{{ getErrorMessage('category') }}</mat-error>
+        <mat-hint align="end">{{category.name || 0}} / 40</mat-hint>
+      </mat-form-field>
+
+      <div class="fieldSelect">
+        <mat-form-field>
+          <mat-label>Selecionar Classe</mat-label>
+          <mat-select formControlName="aclass" required>
+            <ng-container *ngFor="let item of classes">
+              <mat-option [value]="item">
+                {{ item.name }}
+              </mat-option>
+            </ng-container>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Selecionar Diretor</mat-label>
+          <mat-select formControlName="director" required>
+            <ng-container *ngFor="let item of directors">
+              <mat-option [value]="item">
+                {{item.name}}
+              </mat-option>
+            </ng-container>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field *ngIf="!exists">
+          <mat-label>Selecionar Ator(es)</mat-label>
+          <mat-select multiple formControlName="actors" required>
+            <mat-option *ngFor="let option of actors" [value]="option">
+              {{ option.name }}
+          </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <ng-container *ngIf="exists">
+          <mat-form-field>
+            <mat-label>Selecionar Ator(es)</mat-label>
+            <mat-select multiple formControlName="actors" required>
+              <mat-option *ngFor="let option of actors" [value]="option">
+                {{ option.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </ng-container>
+
+      </div>
+
+    </mat-card-content>
+
+    <mat-card-actions class="buttons">
+      <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="!form.valid">Salvar</button>
+      <button mat-button (click)="onCancel()" >Cancelar</button>
+    </mat-card-actions>
+
+  </form>
+
+</mat-card>

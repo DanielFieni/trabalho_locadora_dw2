@@ -17,9 +17,8 @@ public class TitleService {
 
     private final TitleRepository titleRepository;
     private final TitleMapper titleMapper;
-    private final AtorService atorService;
-    private final ClasseService classeService;
-    private final DiretorService diretorService;
+    private final ClassService classService;
+    private final DirectorService directorService;
 
     @Transactional
     public TitleDTO insertTitle(TitleDTO dto) {
@@ -44,9 +43,7 @@ public class TitleService {
     }
 
     public void deleteTitle(int id){
-
         titleRepository.delete(findByIdTitle(id));
-
     }
 
     private Title findByIdTitle(int id) {
@@ -55,10 +52,10 @@ public class TitleService {
 
     private void verifyFieldsTitle(TitleDTO dto) {
 
-        classeService.getByIdClasse(dto.getClasse().getId());
-        diretorService.getByIdDiretor(dto.getDiretor().getId());
+        classService.getByIdClasse(dto.getAClass().getId());
+        directorService.getByIdDiretor(dto.getDirector().getId());
 
-        if(dto.getName().isEmpty() || dto.getName().isBlank() || dto.getName() == null) {
+        if(dto.getName().isEmpty() || dto.getName().isBlank()) {
             throw new RegraNegocioException("Nome inválido! O NOME não pode ser vázio");
         }
 
@@ -66,11 +63,11 @@ public class TitleService {
             throw new RegraNegocioException("Ano inválido! O ANO deve ser maior que 0 e menor que 2023");
         }
 
-        if(dto.getSynopsis().isBlank() || dto.getSynopsis().isEmpty() || dto.getSynopsis() == null) {
+        if(dto.getSynopsis().isBlank() || dto.getSynopsis().isEmpty()) {
             throw new RegraNegocioException("Sinopse inválida! A SINOPSE não pode ser vazia");
         }
 
-        if(dto.getCategory().isBlank() || dto.getCategory().isEmpty() || dto.getCategory() == null) {
+        if(dto.getCategory().isBlank() || dto.getCategory().isEmpty()) {
             throw new RegraNegocioException("Categoria inválida! A CATEGORIA não pode ser vazia");
         }
 

@@ -27,26 +27,26 @@
     </div>
 
     <div class="first-line">
-      <div class="titulo-atores">
+      <div class="title-actors">
         Atores:
-        <ng-container *ngFor="let ator of data.atores">
+        <ng-container *ngFor="let ator of data.actors">
           <mat-card>
             <mat-card-content>{{ator.name}}</mat-card-content>
           </mat-card>
         </ng-container>
       </div>
 
-      <div class="titulo-classe">
+      <div class="title-actors">
         Classe:
         <mat-card>
-          <mat-card-content>{{data.classe.name}}</mat-card-content>
+          <mat-card-content>{{data.aclass.name}}</mat-card-content>
         </mat-card>
       </div>
 
-      <div class="titulo-diretor">
+      <div class="title-actors">
         Diretor:
         <mat-card>
-          <mat-card-content>{{data.diretor.name}}</mat-card-content>
+          <mat-card-content>{{data.director.name}}</mat-card-content>
         </mat-card>
       </div>
     </div>

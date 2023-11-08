@@ -34,9 +34,4 @@ public class Item implements Serializable {
     @Column(name = "type", columnDefinition = "varchar(20)")
     private String type;
 
-    public Item(String numSerie, LocalDate datePurchase) {
-        this.numSerie = numSerie;
-        this.datePurchase = datePurchase;
-    }
-
 }

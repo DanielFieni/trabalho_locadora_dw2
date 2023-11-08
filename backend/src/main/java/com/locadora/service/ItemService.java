@@ -1,7 +1,6 @@
 package com.locadora.service;
 
 import com.locadora.domain.Item;
-import com.locadora.domain.Title;
 import com.locadora.dto.ItemDTO;
 import com.locadora.exception.RegraNegocioException;
 import com.locadora.mapper.ItemMapper;
@@ -49,13 +48,10 @@ public class ItemService {
                 .orElseThrow(() -> new RegraNegocioException("Item não encontrado"));
     }
 
-    private boolean verifyFieldItem(ItemDTO dto) {
-
+    private void verifyFieldItem(ItemDTO dto) {
         if(dto.numSerie().isEmpty() || dto.numSerie().isBlank()) {
             throw new RegraNegocioException("O número de Série não pode ser vazio");
         }
-
-        return true;
     }
 
 }

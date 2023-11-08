@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
-import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { ClasseService } from '../../services/classe.service';
-import { Classe } from '../../models/classe';
+import { Class } from '../../models/class';
+import { ClassService } from '../../services/class.service';
 
 @Injectable({ providedIn: 'root' })
-export class ClasseResolver implements Resolve<Classe> {
+export class ClasseResolver implements Resolve<Class> {
 
-  constructor(private classeService: ClasseService) {}
+  constructor(private classService: ClassService) {}
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Classe> {
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Class> {
     if(route.params && route.params['id']) {
-      return this.classeService.getById(route.params['id']);
+      return this.classService.getById(route.params['id']);
     }
-    return of({} as Classe) ;
+    return of({} as Class) ;
   }
 }

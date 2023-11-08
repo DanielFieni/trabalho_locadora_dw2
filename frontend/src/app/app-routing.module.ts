@@ -7,20 +7,20 @@ const routes: Routes = [
     loadChildren: () => import('./accordation/accordation.module').then(m => m.AccordationModule)
   },
   {
-    path: 'atores',
-    loadChildren: () => import('./atores/atores.module').then(m => m.AtoresModule)
+    path: 'actors',
+    loadChildren: () => import('./actors/actors.module').then(m => m.ActorsModule)
   },
   {
     path: 'classes',
     loadChildren: () => import('./classes/classes.module').then(m => m.ClassesModule)
   },
   {
-    path: 'diretores',
-    loadChildren: () => import('./diretores/diretores.module').then(m => m.DiretoresModule)
+    path: 'directors',
+    loadChildren: () => import('./directors/directors.module').then(m => m.DirectorsModule)
   },
   {
-    path: 'titulos',
-    loadChildren: () => import('./titulos/titulos.module').then(m => m.TitulosModule)
+    path: 'titles',
+    loadChildren: () => import('./titles/titles.module').then(m => m.TitlesModule)
   },
   {
     path: 'items',

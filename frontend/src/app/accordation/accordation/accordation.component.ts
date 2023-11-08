@@ -18,7 +18,7 @@ export class AccordationComponent implements OnInit {
   }
 
   pageAtor() {
-    this.router.navigate(['atores']);
+    this.router.navigate(['actors']);
   }
 
   pageClasse() {
@@ -31,11 +31,11 @@ export class AccordationComponent implements OnInit {
   }
 
   pageTitulos() {
-    this.router.navigate(['titulos']);
+    this.router.navigate(['titles']);
   }
 
   pageDiretor() {
-    this.router.navigate(["diretores"]);
+    this.router.navigate(["directors"]);
   }
 
 }

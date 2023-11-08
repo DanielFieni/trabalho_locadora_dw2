@@ -15,14 +15,14 @@
 
       <mat-form-field class="full-width">
         <mat-label>Digite o valor</mat-label>
-        <input type="number" matInput required formControlName="valor">
-        <mat-error *ngIf="form.get('name')?.invalid">{{ getErrorMessage('valor') }}</mat-error>
+        <input type="number" matInput required formControlName="valueClass">
+        <mat-error *ngIf="form.get('valueClass')?.invalid">{{ getErrorMessage('valueClass') }}</mat-error>
       </mat-form-field>
 
       <mat-form-field class="full-width">
         <mat-label>Digite a data de devolução</mat-label>
-        <input type="number" matInput required formControlName="prazoDevolucao">
-        <mat-error *ngIf="form.get('name')?.invalid">{{ getErrorMessage('prazoDevolucao') }}</mat-error>
+        <input type="number" matInput required formControlName="returnDate">
+        <mat-error *ngIf="form.get('returnDate')?.invalid">{{ getErrorMessage('returnDate') }}</mat-error>
       </mat-form-field>
 
     </mat-card-content>

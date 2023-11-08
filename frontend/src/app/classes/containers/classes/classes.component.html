@@ -7,28 +7,22 @@
 
   <mat-table [dataSource]="classes" class="mat-elevation-z8">
 
-    <!-- Id Column -->
-    <ng-container matColumnDef="_id">
-      <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
-      <mat-cell *matCellDef="let classe"> {{classe._id}} </mat-cell>
-    </ng-container>
-
     <!-- Name Column -->
     <ng-container matColumnDef="name">
       <mat-header-cell *matHeaderCellDef> Nome </mat-header-cell>
-      <mat-cell *matCellDef="let classe"> {{classe.name}} </mat-cell>
+      <mat-cell *matCellDef="let class"> {{class.name}} </mat-cell>
     </ng-container>
 
     <!-- Value Column -->
-    <ng-container matColumnDef="valor">
+    <ng-container matColumnDef="valueClass">
       <mat-header-cell *matHeaderCellDef> Valor </mat-header-cell>
-      <mat-cell *matCellDef="let classe"> {{classe.valor}} </mat-cell>
+      <mat-cell *matCellDef="let class"> {{class.valueClass}} </mat-cell>
     </ng-container>
 
     <!-- Return Date Column -->
-    <ng-container matColumnDef="prazoDevolucao">
+    <ng-container matColumnDef="returnDate">
       <mat-header-cell *matHeaderCellDef> Prazo de devolução </mat-header-cell>
-      <mat-cell *matCellDef="let classe"> {{classe.prazoDevolucao}} </mat-cell>
+      <mat-cell *matCellDef="let class"> {{class.returnDate}} </mat-cell>
     </ng-container>
 
     <!-- Actions Column -->
@@ -39,12 +33,12 @@
         </button>
       </mat-header-cell>
 
-      <mat-cell *matCellDef="let classe" class="action-column">
-        <button mat-icon-button color="accent" aria-label="Editar Classe" (click)="onEdit(classe)">
+      <mat-cell *matCellDef="let class" class="action-column">
+        <button mat-icon-button color="accent" aria-label="Editar Classe" (click)="onEdit(class)">
           <mat-icon>edit</mat-icon>
         </button>
 
-        <button mat-icon-button color="warn" aria-label="Excluir Classe" (click)="onDelete(classe)">
+        <button mat-icon-button color="warn" aria-label="Excluir Classe" (click)="onDelete(class)">
           <mat-icon>delete</mat-icon>
         </button>
 
@@ -56,7 +50,7 @@
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 
     <tr class="mat-row" *matNoDataRow>
-      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+      <td class="mat-cell" colspan="4">Sem dados encontrados "{{input.value}}"</td>
     </tr>
 
   </mat-table>

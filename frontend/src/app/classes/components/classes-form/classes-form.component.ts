@@ -1,11 +1,9 @@
-import { FormBuilder, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { NonNullableFormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Classe } from '../../../models/classe';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { Location } from '@angular/common';
-import { ClasseService } from '../../../services/classe.service';
 import { FormService } from 'src/app/services/form.service';
+import { Class } from '../../../models/class';
+import { ClassService } from '../../../services/class.service';
 
 @Component({
   selector: 'app-classes-form',
@@ -17,30 +15,30 @@ export class ClassesFormComponent implements OnInit {
   form = this.formBuilder.group({
     _id: [''],
     name: ['', Validators.required],
-    valor: ['', Validators.required],
-    prazoDevolucao: ['', Validators.required]
+    valueClass: ['', Validators.required],
+    returnDate: ['', Validators.required]
   });
 
   constructor(
     private formBuilder: NonNullableFormBuilder,
-    private classeService: ClasseService,
+    private classService: ClassService,
     private route: ActivatedRoute,
     private formService: FormService,
   ){
   }
 
   ngOnInit(): void {
-    const classe: Classe = this.route.snapshot.data['classe'];
+    const classe: Class = this.route.snapshot.data['classe'];
     this.form.setValue({
       _id: classe._id,
       name: classe.name,
-      valor: classe.valor,
-      prazoDevolucao: classe.prazoDevolucao
+      valueClass: classe.valueClass,
+      returnDate: classe.returnDate
     })
   }
 
   onSubmit() {
-    this.classeService.save(this.form.value).subscribe(result => this.formService.onSuccess("Classe"),
+    this.classService.save(this.form.value).subscribe(result => this.formService.onSuccess("Classe"),
       error => {
         this.formService.onError(error.error.message, "Classe");
       }

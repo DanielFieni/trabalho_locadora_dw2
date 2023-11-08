@@ -1,8 +1,8 @@
 package com.locadora.mapper;
 
-import com.locadora.domain.Ator;
+import com.locadora.domain.Actor;
 import com.locadora.domain.Title;
-import com.locadora.dto.AtorDTO;
+import com.locadora.dto.ActorDTO;
 import com.locadora.dto.TitleDTO;
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
@@ -16,17 +16,17 @@ import java.util.stream.Collectors;
         componentModel = "spring",
         injectionStrategy = InjectionStrategy.CONSTRUCTOR
 )
-public interface TitleMapper extends EntidadeMapper<Title, TitleDTO> {
+public interface TitleMapper extends EntityMapper<Title, TitleDTO> {
 
-    AtorDTO toAtorDTO(Ator ator);
+    ActorDTO toActorDTO(Actor actor);
 
-    @Mapping(target = "atores", source = "atores", qualifiedByName = "toAtorDTO")
+    @Mapping(target = "actors", source = "actors", qualifiedByName = "toActorDTO")
     TitleDTO toDTO(Title title);
 
-    @Named("toAtorDTO")
-    default List<AtorDTO> mapAtoresToAtorDTO(List<Ator> atores) {
-        return atores.stream()
-                .map(this::toAtorDTO)
+    @Named("toActorDTO")
+    default List<ActorDTO> mapActorsToActorDTO(List<Actor> actors) {
+        return actors.stream()
+                .map(this::toActorDTO)
                 .collect(Collectors.toList());
     }
 

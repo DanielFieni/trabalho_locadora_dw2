@@ -20,8 +20,8 @@ public class TitleDTO {
     private int year;
     private String synopsis;
     private String category;
-    private List<AtorDTO> atores;
-    private ClasseDTO classe;
-    private DiretorDTO diretor;
+    private List<ActorDTO> actors;
+    private ClassDTO aClass;
+    private DirectorDTO director;
 
 }
