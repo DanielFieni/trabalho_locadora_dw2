@@ -55,11 +55,11 @@ public class ClassService {
         double valor = dto.getValueClass();
 
         if(name.isEmpty() || name.isBlank()) {
-            msg += "Nome inválido! ";
+            msg += "Nome inválido! O nome não poder ser vazio";
         }
 
         if(valor < 0) {
-            msg += "Valor inválido! ";
+            msg += "Valor inválido! O valor tem que ser maior que zero";
         }
 
         if(!msg.isEmpty()) {

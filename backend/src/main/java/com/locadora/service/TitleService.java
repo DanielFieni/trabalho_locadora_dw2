@@ -68,7 +68,7 @@ public class TitleService {
             throw new RegraNegocioException("Nome inválido! O NOME não pode ser vázio");
         }
 
-        if(dto.getYear() < 0 || dto.getYear() > 2023) {
+        if(dto.getYear() < 0 || dto.getYear() > 2030) {
             throw new RegraNegocioException("Ano inválido! O ANO deve ser maior que 0 e menor que 2023");
         }
 
