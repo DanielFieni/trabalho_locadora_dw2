@@ -10,6 +10,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatTabsModule } from '@angular/material/tabs';
 
 
 @NgModule({
@@ -24,7 +26,10 @@ import { MatSelectModule } from '@angular/material/select';
     MatCardModule,
     MatToolbarModule,
     MatSnackBarModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDatepickerModule,
+    MatTabsModule,
+
   ]
 })
 export class AppMaterialModule { }

@@ -25,17 +25,16 @@ export class AccordationComponent implements OnInit {
     this.router.navigate(['classes'])
   }
 
-  pageMenu() {
-    // this.router.navigate(['']);
-    // window.location.reload();
-  }
-
   pageTitulos() {
     this.router.navigate(['titles']);
   }
 
   pageDiretor() {
     this.router.navigate(["directors"]);
+  }
+
+  pageClient() {
+    this.router.navigate(['clients'])
   }
 
 }

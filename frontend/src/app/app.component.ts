@@ -39,6 +39,10 @@ export class AppComponent implements OnInit {
     this.router.navigate(['items']);
   }
 
+  pageClient() {
+    this.router.navigate(['clients']);
+  }
+
   ngOnInit(): void {
   }
 

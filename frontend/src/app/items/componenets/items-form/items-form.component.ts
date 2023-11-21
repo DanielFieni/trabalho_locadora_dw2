@@ -68,7 +68,7 @@ export class ItemsFormComponent implements OnInit {
         this.formService.onSuccess("Item");
       },
       error: error => {
-        this.formService.onError(error.error, "Item");
+        this.formService.onError("Erro ao inserir Item", "Item");
       }
     })
   }
