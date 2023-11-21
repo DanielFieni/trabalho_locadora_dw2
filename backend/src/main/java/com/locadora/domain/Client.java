@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @Table(name = "client", schema = "locadora")
 @Inheritance(strategy = InheritanceType.JOINED)
 //@MappedSuperclass
-public class Client implements Serializable {
+public abstract class Client implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

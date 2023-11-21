@@ -50,4 +50,12 @@ public class DependentController {
         return ResponseEntity.status(HttpStatus.OK).body(dependentService.updateDependent(dto, numInscription));
     }
 
+    @PatchMapping("/{id}")
+    public ResponseEntity<DependentDTO> changeStatus(
+            @RequestParam(name = "status") boolean status,
+            @PathVariable int id
+    ) {
+        return ResponseEntity.status(HttpStatus.OK).body(dependentService.changeStatus(id, status));
+    }
+
 }

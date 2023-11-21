@@ -41,7 +41,7 @@ export class ClassesFormComponent implements OnInit {
     this.classService.save(this.form.value).subscribe({
       next: result => this.formService.onSuccess("Classe"),
       error: error => this.formService.onError(error.error, "Classe")
-    })
+    });
   }
 
   onCancel() {

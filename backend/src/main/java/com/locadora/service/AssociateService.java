@@ -1,10 +1,12 @@
 package com.locadora.service;
 
 import com.locadora.domain.Associate;
+import com.locadora.domain.Dependent;
 import com.locadora.dto.AssociateDTO;
 import com.locadora.exception.RegraNegocioException;
 import com.locadora.mapper.AssociateMapper;
 import com.locadora.repository.AssociateRepository;
+import com.locadora.repository.DependentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,7 @@ public class AssociateService {
 
     private final AssociateRepository associateRepository;
     private final AssociateMapper associateMapper;
+    private final DependentRepository dependentRepository;
 
     public AssociateDTO insertAssociate(AssociateDTO dto) {
         checkFields(dto);
@@ -50,9 +53,20 @@ public class AssociateService {
         );
     }
 
+    // Change status of the Associate
+    public AssociateDTO changeStatus(int numInscription, boolean status) {
+        Associate associate = findByIdAssociate(numInscription);
+        if(!status) {
+            disableDependents(numInscription);
+        }
+        associate.setActive(status);
+        return associateMapper.toDTO(associateRepository.save(associate));
+    }
 
-    public void changeStatus(int numInscription, boolean status) {
-
+    private void disableDependents(int associate_id) {
+        List<Dependent> dependents = dependentRepository.findAllByAssociateNumInscriptionAndActiveIsTrue(associate_id);
+        dependents.stream().forEach(dependent -> dependent.setActive(false));
+        dependentRepository.saveAll(dependents);
     }
 
     private void checkFields(AssociateDTO dto) {
@@ -68,7 +82,5 @@ public class AssociateService {
         }
         return true;
     }
-
-
 
 }

@@ -17,13 +17,13 @@ import java.util.List;
 @Table(name = "associate", schema = "locadora")
 public class Associate extends Client implements Serializable {
 
-    @Column(name = "cpf", columnDefinition = "varchar(11)")
+    @Column(name = "cpf", columnDefinition = "varchar(11)", length = 11)
     private String cpf;
     @Column(name = "address", columnDefinition = "varchar(150)")
     private String address;
     @Column(name = "phone", columnDefinition = "varchar(20)")
     private String phone;
-    @OneToMany(mappedBy = "associate")
+    @OneToMany(mappedBy = "associate", cascade = CascadeType.REMOVE)
     private List<Dependent> dependents;
 
 }

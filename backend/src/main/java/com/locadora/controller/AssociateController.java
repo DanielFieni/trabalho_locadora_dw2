@@ -54,4 +54,11 @@ public class AssociateController {
         return ResponseEntity.status(HttpStatus.OK).body(associateService.updateAssociate(dto, id));
     }
 
+    @PatchMapping("/{numInscription}")
+    public ResponseEntity<AssociateDTO> changeStatus(
+            @RequestParam(name = "status") boolean status,
+            @PathVariable int numInscription) {
+        return ResponseEntity.status(HttpStatus.OK).body(associateService.changeStatus(numInscription, status));
+    }
+
 }
