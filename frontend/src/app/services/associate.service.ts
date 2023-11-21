@@ -31,6 +31,11 @@ export class AssociateService {
     return this.httpClient.get(`${this.API}/${numDesription}`);
   }
 
+  changeStatus(status: boolean, numInscription: String) {
+    const options = { params: { status } };
+    return this.httpClient.patch(`${this.API}/${numInscription}`, options);
+  }
+
   private update(associate: Partial<Associate>) {
     return this.httpClient.put(`${this.API}/${associate.numInscription}`, associate);
   }

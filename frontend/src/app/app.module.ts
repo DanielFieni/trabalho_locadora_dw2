@@ -13,6 +13,7 @@ import { MatListModule } from '@angular/material/list';
 import { HttpClientModule } from '@angular/common/http';
 import { AppMaterialModule } from './shared/app-material/app-material.module';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { ClientComponent } from './clients/client/client.component';
 
 @NgModule({
   declarations: [
