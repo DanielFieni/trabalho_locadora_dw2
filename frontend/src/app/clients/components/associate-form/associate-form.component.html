@@ -1,0 +1,61 @@
+<mat-card>
+
+  <mat-toolbar color="primary">
+    Detalhes do Associado
+  </mat-toolbar>
+
+  <form [formGroup]="form" class="min-width" >
+    <mat-card-content>
+      <mat-form-field class="full-width">
+        <mat-label>Nome</mat-label>
+        <input maxlength="40" matInput required formControlName="name" #name>
+        <mat-error *ngIf="form.get('name')?.invalid">{{ getErrorMessage('name') }}</mat-error>
+        <mat-hint align="end">{{name.value.length || 0}} / 40</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>CPF</mat-label>
+        <input maxlength="40" matInput required formControlName="cpf" #cpf>
+        <mat-error *ngIf="form.get('cpf')?.invalid">{{ getErrorMessage('cpf') }}</mat-error>
+        <mat-hint align="end">{{cpf.value.length || 0}} / 40</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Data de nascimento</mat-label>
+        <input matInput required formControlName="dtBirth" #dtBirth>
+        <mat-error *ngIf="form.get('dtBirth')?.invalid">{{ getErrorMessage('dtBirth') }}</mat-error>
+        <mat-hint align="end">{{dtBirth.value.length || 0}} / 40</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Telefone</mat-label>
+        <input maxlength="40" matInput required formControlName="phone" #phone>
+        <mat-error *ngIf="form.get('phone')?.invalid">{{ getErrorMessage('phone') }}</mat-error>
+        <mat-hint align="end">{{phone.value.length || 0}} / 40</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Endereço</mat-label>
+        <input maxlength="40" matInput required formControlName="address" #address>
+        <mat-error *ngIf="form.get('address')?.invalid">{{ getErrorMessage('address') }}</mat-error>
+        <mat-hint align="end">{{address.value.length || 0}} / 40</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Selecione o Sexo</mat-label>
+        <mat-select formControlName="sex" required>
+          <mat-option value="Masculino">Masculino</mat-option>
+          <mat-option value="Feminino">Feminino</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </mat-card-content>
+
+    <mat-card-actions class="botoes">
+      <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="!form.valid">Salvar</button>
+      <button mat-button (click)="onCancel()" >Cancelar</button>
+    </mat-card-actions>
+
+  </form>
+
+</mat-card>

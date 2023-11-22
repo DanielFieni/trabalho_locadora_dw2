@@ -28,7 +28,7 @@ public abstract class Client implements Serializable {
     private LocalDate dtBirth;
 
     @Column(name = "sex")
-    private char sex;
+    private String sex;
 
     @Column(name = "active")
     private boolean active;

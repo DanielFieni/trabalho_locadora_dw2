@@ -16,8 +16,8 @@ export class AssociateService {
     return this.httpClient.get<Associate[]>(this.API);
   }
 
-  delete(id: string) {
-    return this.httpClient.delete(`${this.API}/${id}`);
+  delete(numInscription: string) {
+    return this.httpClient.delete(`${this.API}/${numInscription}`);
   }
 
   save(associate: Partial<Associate>) {
@@ -27,13 +27,13 @@ export class AssociateService {
     return this.create(associate);
   }
 
-  findByNumDescription(numDesription: String) {
-    return this.httpClient.get(`${this.API}/${numDesription}`);
+  findByNumDescription(numDesription: string) {
+    return this.httpClient.get<Associate>(`${this.API}/${numDesription}`);
   }
 
-  changeStatus(status: boolean, numInscription: String) {
-    const options = { params: { status } };
-    return this.httpClient.patch(`${this.API}/${numInscription}`, options);
+  changeStatus(status: boolean, numInscription: string) {
+    const options = { params: { status: status} };
+    return this.httpClient.patch(`${this.API}/${numInscription}`, null, options);
   }
 
   private update(associate: Partial<Associate>) {

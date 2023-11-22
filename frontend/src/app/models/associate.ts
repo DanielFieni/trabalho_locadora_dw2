@@ -1,10 +1,12 @@
 export interface Associate {
 
-  numInscription: String,
-  name: String,
-  address: String,
-  phone: String,
-  sex: String,
-  dtBirth: String
+  numInscription: string,
+  name: string,
+  address: string,
+  phone: string,
+  sex: string,
+  dtBirth: string
+  cpf: string
+  active: boolean
 
 }

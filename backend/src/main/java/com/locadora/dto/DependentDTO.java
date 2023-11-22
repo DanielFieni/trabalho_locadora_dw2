@@ -1,5 +1,6 @@
 package com.locadora.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -10,8 +11,9 @@ import java.time.LocalDate;
 public record DependentDTO(
         int numInscription,
         String name,
+        @JsonFormat(pattern = "dd/MM/yyyy")
         LocalDate dtBirth,
-        char sex,
+        String sex,
         boolean active,
 
         @NotBlank
