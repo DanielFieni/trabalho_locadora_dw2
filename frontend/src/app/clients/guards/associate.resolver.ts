@@ -11,7 +11,7 @@ export class AssociateResolver implements Resolve<Associate> {
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Associate> {
     if(route.params && route.params['numInscription']) {
-      return this.associateService.findByNumDescription(route.params['numInscription']);
+      return this.associateService.findByNumInscription(route.params['numInscription']);
     }
     return of({} as Associate) ;
   }

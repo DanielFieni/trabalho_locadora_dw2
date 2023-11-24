@@ -63,6 +63,11 @@ public class AssociateService {
         return associateMapper.toDTO(associateRepository.save(associate));
     }
 
+    // Amount of dependents less than 3 and dependents are active
+    public List<AssociateDTO> getAssociatesAvailable() {
+        return associateMapper.toDTO(associateRepository.getAllAssociateAvailable());
+    }
+
     private void disableDependents(int associate_id) {
         List<Dependent> dependents = dependentRepository.findAllByAssociateNumInscriptionAndActiveIsTrue(associate_id);
         dependents.stream().forEach(dependent -> dependent.setActive(false));

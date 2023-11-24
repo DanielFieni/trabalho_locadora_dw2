@@ -1,17 +1,19 @@
 import { Component, OnInit } from '@angular/core';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Associate } from 'src/app/models/associate';
 import { AssociateService } from 'src/app/services/associate.service';
+import { SharedService } from 'src/app/services/shared.service';
 import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmation-dialog/confirmation-dialog.component';
 import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog.component';
 
 @Component({
   selector: 'app-associate',
   templateUrl: './associate.component.html',
-  styleUrls: ['./associate.component.scss']
+  styleUrls: ['./associate.component.scss'],
 })
 export class AssociateComponent implements OnInit {
 
@@ -22,8 +24,13 @@ export class AssociateComponent implements OnInit {
     private associateService: AssociateService,
     private router: Router,
     private dialog: MatDialog,
-    private _snackBar: MatSnackBar
-  ) { }
+    private _snackBar: MatSnackBar,
+    private sharedService: SharedService
+  ) {
+    this.sharedService.refreshNeeded$.subscribe(() => {
+      this.getAssociateList();
+    })
+   }
 
   ngOnInit(): void {
     this.getAssociateList();
@@ -79,10 +86,24 @@ export class AssociateComponent implements OnInit {
     this.router.navigate(['clients/associates/edit/', associate.numInscription]);
   }
 
-  changeStatus(active: boolean, numIncription: string) {
-    this.associateService.changeStatus(active, numIncription).subscribe({
-      error: (error) => { this.onError("Erro ao alterar status do sócio")
-    }});
+  changeStatus(associate: Associate) {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      data: associate.active ? "Tem certeza que deseja ativar o(a): " + associate.name : "Tem certeza que deseja desativar o(a): " + associate.name
+    });
+
+    dialogRef.afterClosed().subscribe((result: boolean) => {
+      if (result) {
+        this.associateService.changeStatus(associate.active, associate.numInscription).subscribe({
+          next: () => this.sharedService.refreshData(),
+          error: (error) => {
+            this.onError(error.error);
+            this.sharedService.refreshData();
+        }});
+      } else {
+        this.sharedService.refreshData();
+      }
+    })
+
   }
 
 }

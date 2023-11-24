@@ -1,6 +1,5 @@
 package com.locadora.controller;
 
-import com.locadora.domain.Dependent;
 import com.locadora.dto.DependentDTO;
 import com.locadora.service.DependentService;
 import io.swagger.v3.oas.annotations.tags.Tag;

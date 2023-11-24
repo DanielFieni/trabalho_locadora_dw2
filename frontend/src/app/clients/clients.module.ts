@@ -8,13 +8,19 @@ import { ClientsRoutingModule } from './clients-routing.module';
 import { AssociateFormComponent } from './components/associate-form/associate-form.component';
 import { AssociateComponent } from './containers/associate/associate.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { DependentComponent } from './containers/dependent/dependent.component';
+import { DependentFormComponent } from './components/dependent-form/dependent-form.component';
 
 
 @NgModule({
   declarations: [
     ClientComponent,
     AssociateComponent,
-    AssociateFormComponent
+    AssociateFormComponent,
+    DependentComponent,
+    DependentFormComponent
   ],
   imports: [
     CommonModule,
@@ -23,6 +29,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     SharedModule,
     ReactiveFormsModule,
     FormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ]
 })
 export class ClientsModule { }

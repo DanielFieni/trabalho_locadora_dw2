@@ -1,3 +1,4 @@
+import { Dependent } from 'src/app/models/dependent';
 export interface Associate {
 
   numInscription: string,
@@ -7,6 +8,6 @@ export interface Associate {
   sex: string,
   dtBirth: string
   cpf: string
-  active: boolean
+  active: boolean,
 
 }

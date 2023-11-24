@@ -27,13 +27,17 @@ export class AssociateService {
     return this.create(associate);
   }
 
-  findByNumDescription(numDesription: string) {
+  findByNumInscription(numDesription: string) {
     return this.httpClient.get<Associate>(`${this.API}/${numDesription}`);
   }
 
   changeStatus(status: boolean, numInscription: string) {
     const options = { params: { status: status} };
     return this.httpClient.patch(`${this.API}/${numInscription}`, null, options);
+  }
+
+  getNotActive(): Observable<Associate[]> {
+    return this.httpClient.get<Associate[]>(`${this.API}/active`);
   }
 
   private update(associate: Partial<Associate>) {

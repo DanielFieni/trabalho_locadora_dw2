@@ -5,9 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import java.util.List;
 
 import java.io.Serializable;
-import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -23,7 +23,7 @@ public class Associate extends Client implements Serializable {
     private String address;
     @Column(name = "phone", columnDefinition = "varchar(20)")
     private String phone;
-    @OneToMany(mappedBy = "associate", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "associate", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     private List<Dependent> dependents;
 
 }

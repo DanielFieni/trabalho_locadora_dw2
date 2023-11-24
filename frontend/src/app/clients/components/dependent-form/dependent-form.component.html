@@ -14,13 +14,6 @@
       </mat-form-field>
 
       <mat-form-field class="full-width">
-        <mat-label>CPF</mat-label>
-        <input maxlength="40" matInput required formControlName="cpf" #cpf>
-        <mat-error *ngIf="form.get('cpf')?.invalid">{{ getErrorMessage('cpf') }}</mat-error>
-        <mat-hint align="end">{{cpf.value.length || 0}} / 40</mat-hint>
-      </mat-form-field>
-
-      <mat-form-field class="full-width">
         <mat-label>Data de nascimento</mat-label>
         <input matInput [matDatepicker]="picker" formControlName="dtBirth">
         <mat-hint>MM/DD/YYYY</mat-hint>
@@ -29,24 +22,21 @@
       </mat-form-field>
 
       <mat-form-field class="full-width">
-        <mat-label>Telefone</mat-label>
-        <input maxlength="40" matInput required formControlName="phone" #phone>
-        <mat-error *ngIf="form.get('phone')?.invalid">{{ getErrorMessage('phone') }}</mat-error>
-        <mat-hint align="end">{{phone.value.length || 0}} / 40</mat-hint>
-      </mat-form-field>
-
-      <mat-form-field class="full-width">
-        <mat-label>Endereço</mat-label>
-        <input maxlength="40" matInput required formControlName="address" #address>
-        <mat-error *ngIf="form.get('address')?.invalid">{{ getErrorMessage('address') }}</mat-error>
-        <mat-hint align="end">{{address.value.length || 0}} / 40</mat-hint>
-      </mat-form-field>
-
-      <mat-form-field class="full-width">
         <mat-label>Selecione o Sexo</mat-label>
         <mat-select formControlName="sex" required>
           <mat-option value="Masculino">Masculino</mat-option>
           <mat-option value="Feminino">Feminino</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Selecionar o Associado</mat-label>
+        <mat-select formControlName="associate" required>
+          <ng-container *ngFor="let item of associates">
+            <mat-option [value]="item">
+              {{item.name}}
+            </mat-option>
+          </ng-container>
         </mat-select>
       </mat-form-field>
 
@@ -60,3 +50,4 @@
   </form>
 
 </mat-card>
+

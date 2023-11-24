@@ -1,8 +1,6 @@
 package com.locadora.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.locadora.domain.Dependent;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -17,6 +15,6 @@ public record AssociateDTO(
         String cpf,
         String address,
         String phone
-//        List<DependentDTO> dependents
+        // List<DependentDTO> dependents
 ) {
 }

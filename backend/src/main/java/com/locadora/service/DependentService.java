@@ -1,5 +1,10 @@
 package com.locadora.service;
 
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.stereotype.Service;
+
 import com.locadora.domain.Associate;
 import com.locadora.domain.Dependent;
 import com.locadora.dto.DependentDTO;
@@ -7,11 +12,8 @@ import com.locadora.exception.RegraNegocioException;
 import com.locadora.mapper.DependentMapper;
 import com.locadora.repository.AssociateRepository;
 import com.locadora.repository.DependentRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
@@ -53,15 +55,16 @@ public class DependentService {
         Dependent dependent = findByDependent(numInscription);
         if(status) {
             checkIfAssociateIsAvailable(dependent.getAssociate().getNumInscription());
-            checkIfAssociateIsActive(numInscription);
+            checkIfAssociateIsActive(dependent.getAssociate());
         }
         dependent.setActive(status);
         return dependentMapper.toDTO(dependentRepository.save(dependent));
     }
 
-    private void checkIfAssociateIsActive(int dependent_id) {
-        findActiveAssociateByDependentNumInscription(dependent_id)
-                .orElseThrow(() -> new RegraNegocioException("O Sócio deve estar ativo"));
+    private void checkIfAssociateIsActive(Associate associate) {
+        if(!associate.isActive()) {
+            throw new RegraNegocioException("O sócio não está ativo");
+        }
     }
 
     private Optional<Associate> findActiveAssociateByDependentNumInscription(int dependent_id) {

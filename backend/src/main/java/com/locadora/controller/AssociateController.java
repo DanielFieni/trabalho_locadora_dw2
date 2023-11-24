@@ -61,4 +61,9 @@ public class AssociateController {
         return ResponseEntity.status(HttpStatus.OK).body(associateService.changeStatus(numInscription, status));
     }
 
+    @GetMapping("/active")
+    public ResponseEntity<List<AssociateDTO>> getNotActive() {
+        return ResponseEntity.status(HttpStatus.OK).body(associateService.getAssociatesAvailable());
+    }
+
 }

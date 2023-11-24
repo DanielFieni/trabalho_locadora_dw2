@@ -16,7 +16,7 @@ import java.io.Serializable;
 @Table(name = "dependent", schema = "locadora")
 public class Dependent extends Client implements Serializable {
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "associate_id", nullable = false)
     private Associate associate;
 
