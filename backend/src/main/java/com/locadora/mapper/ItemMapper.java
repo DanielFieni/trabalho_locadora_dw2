@@ -9,5 +9,5 @@ import org.mapstruct.Mapper;
         componentModel = "spring",
         injectionStrategy = InjectionStrategy.CONSTRUCTOR
 )
-public abstract class ItemMapper implements EntityMapper<Item, ItemDTO> {
+public interface ItemMapper extends EntityMapper<Item, ItemDTO> {
 }
