@@ -1,0 +1,81 @@
+<div class="table-container">
+
+  <mat-form-field>
+    <mat-label>Pesquisar Sócio</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Informe um nome" #input>
+  </mat-form-field>
+
+  <mat-table [dataSource]="rents" class="mat-elevation-z8">
+
+    <!-- Client Column -->
+    <ng-container matColumnDef="client">
+      <mat-header-cell *matHeaderCellDef> Cliente </mat-header-cell>
+      <mat-cell *matCellDef="let rent"> {{rent.client.name}} </mat-cell>
+    </ng-container>
+
+    <!-- Item Column -->
+    <ng-container matColumnDef="item">
+      <mat-header-cell *matHeaderCellDef> Título </mat-header-cell>
+      <mat-cell *matCellDef="let rent"> {{rent.item.title.name}} </mat-cell>
+    </ng-container>
+
+    <!-- Rental Date Column -->
+    <ng-container matColumnDef="rentalDate">
+      <mat-header-cell *matHeaderCellDef> Data de Locação </mat-header-cell>
+      <mat-cell *matCellDef="let rent"> {{rent.rentalDate}} </mat-cell>
+    </ng-container>
+
+    <!-- Expected return date Column -->
+    <ng-container matColumnDef="expectedReturnDate">
+      <mat-header-cell *matHeaderCellDef> Data esperada de Retorno </mat-header-cell>
+      <mat-cell *matCellDef="let rent"> {{rent.expectedReturnDate}} </mat-cell>
+    </ng-container>
+
+    <!-- Return Date Column -->
+    <ng-container matColumnDef="returnDate">
+      <mat-header-cell *matHeaderCellDef> Data de Retorno </mat-header-cell>
+      <mat-cell *matCellDef="let rent"> {{rent.returnDate}} </mat-cell>
+    </ng-container>
+
+    <!-- Amount Charged Column -->
+    <ng-container matColumnDef="amountCharged">
+      <mat-header-cell *matHeaderCellDef> Valor Cobrado </mat-header-cell>
+      <mat-cell *matCellDef="let rent"> {{rent.amountCharged}} </mat-cell>
+    </ng-container>
+
+    <!-- Fine Charged Column -->
+    <ng-container matColumnDef="fineCharged">
+      <mat-header-cell *matHeaderCellDef> Multa </mat-header-cell>
+      <mat-cell *matCellDef="let rent"> {{ rent.fineCharged }} </mat-cell>
+    </ng-container>
+
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef class="action-column action-column-header">
+        <button mat-mini-fab color="primary" aria-label="Adicionar Associado" (click)="onAdd()">
+          <mat-icon>add</mat-icon>
+        </button>
+      </mat-header-cell>
+
+      <mat-cell *matCellDef="let rent" class="action-column">
+        <button mat-icon-button color="accent" aria-label="Editar Associado" (click)="onEdit(rent)">
+          <mat-icon>edit</mat-icon>
+        </button>
+
+        <button mat-icon-button color="warn" aria-label="Excluir Associado" (click)="onDelete(rent)">
+          <mat-icon>delete</mat-icon>
+        </button>
+
+      </mat-cell>
+
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">Sem dados encontrados "{{input.value}}"</td>
+    </tr>
+
+  </mat-table>
+</div>

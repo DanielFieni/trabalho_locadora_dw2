@@ -43,6 +43,10 @@ export class AppComponent implements OnInit {
     this.router.navigate(['clients']);
   }
 
+  pageRent() {
+    this.router.navigate(['rents']);
+  }
+
   ngOnInit(): void {
   }
 

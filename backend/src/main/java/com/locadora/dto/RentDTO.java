@@ -12,12 +12,11 @@ public record RentDTO(
         LocalDate rentalDate,
         @JsonFormat(pattern = "dd/MM/yyyy")
         LocalDate expectedReturnDate,
-
         @JsonFormat(pattern = "dd/MM/yyyy")
         LocalDate returnDate,
-
         double amountCharged,
         double fineCharged,
-        ClientDTO client
+        ClientDTO client,
+        ItemDTO item
 ) {
 }
