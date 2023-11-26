@@ -38,6 +38,10 @@ public class RentService {
         return rentMapper.toDTO(rentRepository.save(rent));
     }
 
+    public RentDTO loadRent(int id) {
+        return rentMapper.toDTO(findByIdRent(id));
+    }
+
     private Rent findByIdRent(int id) {
         return rentRepository.findById(id)
                 .orElseThrow(() -> new RegraNegocioException("Aluguel não encontrado"));

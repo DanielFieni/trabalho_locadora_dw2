@@ -48,4 +48,10 @@ public class RentController {
         return ResponseEntity.status(HttpStatus.OK).body(rentService.getAllRent());
     }
 
+    // Find Rent by id
+    @GetMapping("/{id}")
+    public ResponseEntity<RentDTO> find(@PathVariable int id ) {
+        return ResponseEntity.status(HttpStatus.OK).body(rentService.loadRent(id));
+    }
+
 }

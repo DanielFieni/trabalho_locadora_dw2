@@ -13,7 +13,6 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "client", schema = "locadora")
 @Inheritance(strategy = InheritanceType.JOINED)
-//@MappedSuperclass
 public class Client implements Serializable {
 
     @Id
@@ -24,7 +23,7 @@ public class Client implements Serializable {
     @Column(name = "name", columnDefinition = "varchar(100)")
     private String name;
 
-    @Column(name = "dtBith")
+    @Column(name = "dtBirth")
     private LocalDate dtBirth;
 
     @Column(name = "sex")
