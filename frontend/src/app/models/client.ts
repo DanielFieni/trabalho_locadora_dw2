@@ -1,6 +1,7 @@
 export interface Client {
 
-  numDescription: string;
+  name: string;
+  numInscription: string;
   dtBirth: string;
   sex: string;
   active: boolean;

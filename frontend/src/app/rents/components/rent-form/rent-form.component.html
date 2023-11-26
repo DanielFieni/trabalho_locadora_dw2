@@ -1,0 +1,74 @@
+<mat-card>
+
+  <mat-toolbar color="primary">
+    Detalhes da Classe
+  </mat-toolbar>
+
+  <form [formGroup]="form" class="min-width" >
+    <mat-card-content>
+
+      <mat-form-field class="full-width">
+        <mat-label>Selecionar Cliente</mat-label>
+        <mat-select formControlName="client" required>
+          <ng-container *ngFor="let item of clients">
+            <mat-option [value]="item">
+              {{ item.name }}
+            </mat-option>
+          </ng-container>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Selecionar Item</mat-label>
+        <mat-select formControlName="item" required>
+          <ng-container *ngFor="let item of items">
+            <mat-option [value]="item">
+              {{item.numSerie}}
+            </mat-option>
+          </ng-container>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Valor Cobrado</mat-label>
+        <input type="number" matInput required formControlName="amountCharged">
+        <mat-error *ngIf="form.get('amountCharged')?.invalid">{{ getErrorMessage('amountCharged') }}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Data de Retorno esperada</mat-label>
+        <input maxlength="40" matInput required formControlName="expectedReturnDate" #expectedReturnDate>
+        <mat-error *ngIf="form.get('expectedReturnDate')?.invalid">{{ getErrorMessage('expectedReturnDate') }}</mat-error>
+      </mat-form-field>
+
+      <ng-container *ngIf="exists">
+          <mat-form-field class="full-width">
+            <mat-label>Data de Locação</mat-label>
+            <input maxlength="40" matInput required [disabled]="true" formControlName="rentalDate" #rentalDate>
+            <mat-error *ngIf="form.get('rentalDate')?.invalid">{{ getErrorMessage('rentalDate') }}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="full-width">
+            <mat-label>Data de Retorno</mat-label>
+            <input maxlength="40" matInput required formControlName="returnDate" #returnDate>
+            <mat-error *ngIf="form.get('returnDate')?.invalid">{{ getErrorMessage('returnDate') }}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="full-width">
+            <mat-label>Multa Cobrada</mat-label>
+            <input type="number" matInput required formControlName="fineCharged">
+            <mat-error *ngIf="form.get('fineCharged')?.invalid">{{ getErrorMessage('fineCharged') }}</mat-error>
+          </mat-form-field>
+
+      </ng-container>
+
+    </mat-card-content>
+
+    <mat-card-actions class="buttons">
+      <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="!form.valid">Salvar</button>
+      <button mat-button (click)="onCancel()" >Cancelar</button>
+    </mat-card-actions>
+
+  </form>
+
+</mat-card>

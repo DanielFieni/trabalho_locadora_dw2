@@ -27,6 +27,10 @@ export class RentService {
     return this.create(rent);
   }
 
+  findById(id: string) {
+    return this.http_client.get<Rent>(`${this.API}/${id}`);
+  }
+
   private create(rent: Partial<Rent>) {
     return this.http_client.post(this.API, rent);
   }

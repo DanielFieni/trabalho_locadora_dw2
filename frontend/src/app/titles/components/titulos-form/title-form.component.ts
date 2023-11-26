@@ -56,7 +56,6 @@ export class TitleFormComponent implements OnInit {
     this.fillDirectors();
     this.fillClasses();
     this.fillActors();
-
   }
 
   getActorsTitleList() {
@@ -119,7 +118,6 @@ export class TitleFormComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.form.value)
     this.titleService.save(this.form.value).subscribe({
       next: result => this.formService.onSuccess("Titulo"),
       error: error => this.formService.onError(error.error, "Titulo")
