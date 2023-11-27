@@ -29,45 +29,50 @@
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field class="full-width">
-        <mat-label>Valor Cobrado</mat-label>
-        <input type="number" matInput required formControlName="amountCharged">
-        <mat-error *ngIf="form.get('amountCharged')?.invalid">{{ getErrorMessage('amountCharged') }}</mat-error>
-      </mat-form-field>
-
-      <mat-form-field class="full-width">
-        <mat-label>Data de Retorno esperada</mat-label>
-        <input maxlength="40" matInput required formControlName="expectedReturnDate" #expectedReturnDate>
-        <mat-error *ngIf="form.get('expectedReturnDate')?.invalid">{{ getErrorMessage('expectedReturnDate') }}</mat-error>
-      </mat-form-field>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="onNext()" [disabled]="!form.valid || exists">Proximo</button>
+      </mat-card-actions>
 
       <ng-container *ngIf="exists">
-          <mat-form-field class="full-width">
-            <mat-label>Data de Locação</mat-label>
-            <input maxlength="40" matInput required [disabled]="true" formControlName="rentalDate" #rentalDate>
-            <mat-error *ngIf="form.get('rentalDate')?.invalid">{{ getErrorMessage('rentalDate') }}</mat-error>
-          </mat-form-field>
 
-          <mat-form-field class="full-width">
-            <mat-label>Data de Retorno</mat-label>
-            <input maxlength="40" matInput required formControlName="returnDate" #returnDate>
-            <mat-error *ngIf="form.get('returnDate')?.invalid">{{ getErrorMessage('returnDate') }}</mat-error>
-          </mat-form-field>
+        <mat-form-field class="full-width">
+          <mat-label>Data de locaçãp</mat-label>
+          <input type="text" matInput required formControlName="rentalDate">
+          <mat-error *ngIf="form.get('rentalDate')?.invalid">{{ getErrorMessage('rentalDate') }}</mat-error>
+        </mat-form-field>
 
-          <mat-form-field class="full-width">
-            <mat-label>Multa Cobrada</mat-label>
-            <input type="number" matInput required formControlName="fineCharged">
-            <mat-error *ngIf="form.get('fineCharged')?.invalid">{{ getErrorMessage('fineCharged') }}</mat-error>
-          </mat-form-field>
+        <mat-form-field class="full-width">
+          <mat-label>Valor Cobrado</mat-label>
+          <input type="number" matInput required formControlName="amountCharged">
+          <mat-error *ngIf="form.get('amountCharged')?.invalid">{{ getErrorMessage('amountCharged') }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <mat-label>Data de Retorno esperada</mat-label>
+          <input maxlength="40" matInput required formControlName="expectedReturnDate" #expectedReturnDate>
+          <mat-error *ngIf="form.get('expectedReturnDate')?.invalid">{{ getErrorMessage('expectedReturnDate') }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <mat-label>Data de Retorno</mat-label>
+          <input maxlength="40" matInput required formControlName="returnDate" #returnDate>
+          <mat-error *ngIf="form.get('returnDate')?.invalid">{{ getErrorMessage('returnDate') }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <mat-label>Multa Cobrada</mat-label>
+          <input type="number" matInput required formControlName="fineCharged">
+          <mat-error *ngIf="form.get('fineCharged')?.invalid">{{ getErrorMessage('fineCharged') }}</mat-error>
+        </mat-form-field>
+
+        <mat-card-actions class="buttons">
+          <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="!form.valid">Salvar</button>
+          <button mat-button (click)="onCancel()" >Cancelar</button>
+        </mat-card-actions>
 
       </ng-container>
 
     </mat-card-content>
-
-    <mat-card-actions class="buttons">
-      <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="!form.valid">Salvar</button>
-      <button mat-button (click)="onCancel()" >Cancelar</button>
-    </mat-card-actions>
 
   </form>
 

@@ -42,7 +42,7 @@ export class RentComponent implements OnInit {
 
   onDelete(rent: Rent) {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-      data: "Tem certeza que deseja remover o(a): " + rent.rentalDate,
+      data: "Tem certeza que deseja remover a locação de : " + rent.client.name + " -> " + rent.item.numSerie
     });
 
     dialogRef.afterClosed().subscribe((result: boolean) => {

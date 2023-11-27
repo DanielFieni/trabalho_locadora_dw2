@@ -48,8 +48,8 @@ export class RentFormComponent implements OnInit {
     });
 
     this.exists = this.rent._id !== undefined && this.rent._id !== null;
-    // if (this.rent) this.form.patchValue(this.rent);
-    this.loadData(new Date());
+    if (this.rent) this.form.patchValue(this.rent);
+    // this.loadData(new Date());
     this.form.patchValue(this.rent)
     this.fillClients();
     this.fillItems();
@@ -109,12 +109,18 @@ export class RentFormComponent implements OnInit {
     this.rent.amountCharged = amountCharged;
   }
 
+  onNext(){
+    this.loadData(new Date);
+    this.form.patchValue(this.rent);
+    this.exists = true;
+  }
+
   onSubmit() {
     console.log(this.form.value);
-    // this.rentService.save(this.form.value).subscribe({
-    //   next: result => this.formService.onSuccess("Locação"),
-    //   error: error => this.formService.onError(error.error, "Locação")
-    // })
+    this.rentService.save(this.form.value).subscribe({
+      next: result => this.formService.onSuccess("Locação"),
+      error: error => this.formService.onError(error.error, "Locação")
+    })
   }
 
   onCancel() {
