@@ -33,6 +33,10 @@ export class ItemService {
       return this.create(item);
     }
 
+    getAllItemsAvailable() {
+      return this.httpClient.get<Item[]>(`${this.API}/available`);
+    }
+
     private update(item: Partial<Item>) {
       return this.httpClient.put<Item>(`${this.API}/${item._id}`, item);
     }

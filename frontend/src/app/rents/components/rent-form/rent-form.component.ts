@@ -49,10 +49,14 @@ export class RentFormComponent implements OnInit {
     });
 
     this.exists = this.rent._id !== undefined && this.rent._id !== null;
-    if (this.rent) this.form.patchValue(this.rent)
-    this.fillClients();
-    this.fillItems();
+    if (this.exists) {
+      this.form.patchValue(this.rent);
+    } else {
+      this.fillClients();
+      this.fillItems();
+    }
 
+    console.log(this.form.value);
     this.cdr.detectChanges();
 
   }
@@ -77,7 +81,7 @@ export class RentFormComponent implements OnInit {
   }
 
   fillItems() {
-    this.itemService.list().subscribe({
+    this.itemService.getAllItemsAvailable().subscribe({
       next: (item: Item[]) => {
         this.items.push(...item);
         if(this.rent._id) {

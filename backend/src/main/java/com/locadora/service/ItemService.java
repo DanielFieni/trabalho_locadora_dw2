@@ -43,6 +43,10 @@ public class ItemService {
         return itemMapper.toDTO(item);
     }
 
+    public List<ItemDTO> findAllItemsAvailable() {
+        return itemMapper.toDTO(itemRepository.findAllItemsThatNotRented());
+    }
+
     private Item findByIdItem(int id) {
         return itemRepository.findById(id)
                 .orElseThrow(() -> new RegraNegocioException("Item não encontrado"));

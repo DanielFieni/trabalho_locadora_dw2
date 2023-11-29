@@ -21,8 +21,15 @@ public class RentService {
 
     public RentDTO insertRent(RentDTO dto) {
         Rent rent = rentMapper.toEntity(dto);
+        checkDate(dto);
         rent.setPaid(false);
         return rentMapper.toDTO(rentRepository.save(rent));
+    }
+
+    // Check if expectedReturnDate is after that rentalDate
+    public void checkDate(RentDTO dto) {
+        if(!dto.expectedReturnDate().isAfter(dto.rentalDate())) 
+            throw new RegraNegocioException("Data de devolução não pode ser anterior a data de aluguel");
     }
 
     public List<RentDTO> getAllRent() {

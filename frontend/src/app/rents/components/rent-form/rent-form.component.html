@@ -40,20 +40,20 @@
 
       <ng-container *ngIf="exists">
 
-        <mat-form-field class="full-width" formControlName="client">
+        <mat-form-field class="full-width">
           <mat-label>Cliente</mat-label>
           <input type="text" matInput required [value]="form.get('client')?.value?.name" [disabled]="true">
           <mat-error *ngIf="form.get('client')?.invalid">{{ getErrorMessage('client') }}</mat-error>
         </mat-form-field>
 
-        <mat-form-field class="full-width" formControlName="item">
+        <mat-form-field class="full-width">
           <mat-label>Cliente</mat-label>
           <input type="text" matInput required [value]="form.get('item')?.value?.numSerie" [disabled]="true">
           <mat-error *ngIf="form.get('item')?.invalid">{{ getErrorMessage('item') }}</mat-error>
         </mat-form-field>
 
         <mat-form-field class="full-width">
-          <mat-label>Data de locaçãp</mat-label>
+          <mat-label>Data de locação</mat-label>
           <input type="text" matInput required formControlName="rentalDate">
           <mat-error *ngIf="form.get('rentalDate')?.invalid">{{ getErrorMessage('rentalDate') }}</mat-error>
         </mat-form-field>
