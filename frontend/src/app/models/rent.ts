@@ -8,6 +8,7 @@ export interface Rent {
   returnDate: string;
   amountCharged: string;
   fineCharged: string;
+  paid: boolean;
   client: Client;
   item: Item;
 }

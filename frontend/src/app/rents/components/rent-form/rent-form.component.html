@@ -55,14 +55,14 @@
 
         <mat-form-field class="full-width">
           <mat-label>Data de Retorno</mat-label>
-          <input maxlength="40" matInput required formControlName="returnDate" #returnDate>
-          <mat-error *ngIf="form.get('returnDate')?.invalid">{{ getErrorMessage('returnDate') }}</mat-error>
+          <input maxlength="40" matInput formControlName="returnDate" #returnDate>
+          <!-- <mat-error *ngIf="form.get('returnDate')?.invalid">{{ getErrorMessage('returnDate') }}</mat-error> -->
         </mat-form-field>
 
         <mat-form-field class="full-width">
           <mat-label>Multa Cobrada</mat-label>
-          <input type="number" matInput required formControlName="fineCharged">
-          <mat-error *ngIf="form.get('fineCharged')?.invalid">{{ getErrorMessage('fineCharged') }}</mat-error>
+          <input type="number" matInput formControlName="fineCharged">
+          <!-- <mat-error *ngIf="form.get('fineCharged')?.invalid">{{ getErrorMessage('fineCharged') }}</mat-error> -->
         </mat-form-field>
 
         <mat-card-actions class="buttons">

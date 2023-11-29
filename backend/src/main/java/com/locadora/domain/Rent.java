@@ -41,6 +41,9 @@ public class Rent implements Serializable {
     @JoinColumn(name = "client_id", nullable = false)
     private Client client;
 
+    @Column(name = "paid")
+    private boolean paid;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "item_id", nullable = false)
     private Item item;

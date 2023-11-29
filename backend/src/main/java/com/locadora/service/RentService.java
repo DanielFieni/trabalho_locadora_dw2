@@ -1,15 +1,16 @@
 package com.locadora.service;
 
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
 import com.locadora.domain.Rent;
 import com.locadora.dto.RentDTO;
 import com.locadora.exception.RegraNegocioException;
 import com.locadora.mapper.RentMapper;
 import com.locadora.repository.RentRepository;
-import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -20,6 +21,7 @@ public class RentService {
 
     public RentDTO insertRent(RentDTO dto) {
         Rent rent = rentMapper.toEntity(dto);
+        rent.setPaid(false);
         return rentMapper.toDTO(rentRepository.save(rent));
     }
 

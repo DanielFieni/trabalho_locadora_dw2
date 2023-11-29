@@ -10,7 +10,14 @@ import java.util.List;
 @Repository
 public interface ClientRepository extends JpaRepository<Client, Integer> {
 
-    @Query(value = "SELECT c FROM Client c WHERE c.active AND (SELECT count(r) FROM Rent r WHERE r.client = c AND r.returnDate IS NULL) = 0")
+    @Query(value = """
+        SELECT c FROM Client c 
+        WHERE c.active AND 
+        (
+            SELECT count(r) FROM Rent r
+            WHERE r.client = c AND r.fineCharged = 0 AND r.paid = false
+        ) = 0
+        """)
     List<Client> findAllClientsIsActiveAndNotDebit();
 
 }

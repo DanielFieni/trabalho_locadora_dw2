@@ -16,6 +16,7 @@ public record RentDTO(
         LocalDate returnDate,
         double amountCharged,
         double fineCharged,
+        boolean paid,
         ClientDTO client,
         ItemDTO item
 ) {

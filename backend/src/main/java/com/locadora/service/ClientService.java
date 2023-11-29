@@ -19,7 +19,7 @@ public class ClientService {
 
     // Verify ig client is active and not have debit
     public List<ClientDTO> getClientsAvailable() {
-        return clientMapper.toDTO(clientRepository.findAllClientsIsActiveAndNotDebit());
+        return clientMapper.toDTO(clientRepository.findAll());
     }
 
     public ClientDTO loadClient(int id) {

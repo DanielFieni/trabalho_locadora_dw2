@@ -15,7 +15,7 @@ import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/err
 })
 export class RentComponent implements OnInit {
 
-  displayedColumns = ['client', 'item', 'rentalDate', 'expectedReturnDate', 'returnDate', 'amountCharged', 'fineCharged', 'actions'];
+  displayedColumns = ['client', 'item', 'rentalDate', 'expectedReturnDate', 'returnDate', 'amountCharged', 'fineCharged', 'paid', 'actions'];
   rents!: MatTableDataSource<Rent>
 
   constructor(
@@ -32,7 +32,7 @@ export class RentComponent implements OnInit {
   getRentList() {
     this.rentService.list().subscribe({
       next: (res) => { this.rents = new MatTableDataSource(res as Rent[]); console.log(res)},
-      error: (error) => { this.onError(error.error) }
+      error: (error) => { this.onError(error.error.error) }
     })
   }
 
