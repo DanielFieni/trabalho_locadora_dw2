@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -61,6 +62,13 @@ public class RentController {
     @GetMapping("/{id}")
     public ResponseEntity<RentDTO> find(@PathVariable int id ) {
         return ResponseEntity.status(HttpStatus.OK).body(rentService.loadRent(id));
+    }
+
+    // Update AmountCharged Rent
+    @PatchMapping("/{id}")
+    public ResponseEntity<Void> updateAmountCharged(@PathVariable int id) {
+        rentService.makePayment(id);
+        return ResponseEntity.noContent().build();
     }
 
 }

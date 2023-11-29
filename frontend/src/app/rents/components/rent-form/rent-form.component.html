@@ -1,39 +1,56 @@
 <mat-card>
 
-  <mat-toolbar color="primary">
+  <mat-toolbar color="primary" class="toolbar">
     Detalhes da Classe
+    <ng-container *ngIf="exists">
+      <button mat-raised-button (click)="makeReturn()">Fazer devolução</button>
+    </ng-container>
   </mat-toolbar>
 
   <form [formGroup]="form" class="min-width" >
     <mat-card-content>
+      <ng-container *ngIf="!exists">
+        <mat-form-field class="full-width">
+          <mat-label>Selecionar Cliente</mat-label>
+          <mat-select formControlName="client" required>
+            <ng-container *ngFor="let item of clients">
+              <mat-option [value]="item">
+                {{ item.name }}
+              </mat-option>
+            </ng-container>
+          </mat-select>
+        </mat-form-field>
 
-      <mat-form-field class="full-width">
-        <mat-label>Selecionar Cliente</mat-label>
-        <mat-select formControlName="client" required>
-          <ng-container *ngFor="let item of clients">
-            <mat-option [value]="item">
-              {{ item.name }}
-            </mat-option>
-          </ng-container>
-        </mat-select>
-      </mat-form-field>
+        <mat-form-field class="full-width">
+          <mat-label>Selecionar Item</mat-label>
+          <mat-select formControlName="item" required>
+            <ng-container *ngFor="let item of items">
+              <mat-option [value]="item">
+                {{item.numSerie}}
+              </mat-option>
+            </ng-container>
+          </mat-select>
+        </mat-form-field>
 
-      <mat-form-field class="full-width">
-        <mat-label>Selecionar Item</mat-label>
-        <mat-select formControlName="item" required>
-          <ng-container *ngFor="let item of items">
-            <mat-option [value]="item">
-              {{item.numSerie}}
-            </mat-option>
-          </ng-container>
-        </mat-select>
-      </mat-form-field>
-
-      <mat-card-actions>
-        <button mat-raised-button color="primary" (click)="onNext()" [disabled]="!form.valid || exists">Proximo</button>
-      </mat-card-actions>
+        <mat-card-actions>
+          <button mat-raised-button color="primary" (click)="onNext()" [disabled]="!form.valid || exists">Proximo</button>
+          <button mat-button (click)="onCancel()" >Cancelar</button>
+        </mat-card-actions>
+      </ng-container>
 
       <ng-container *ngIf="exists">
+
+        <mat-form-field class="full-width" formControlName="client">
+          <mat-label>Cliente</mat-label>
+          <input type="text" matInput required [value]="form.get('client')?.value?.name" [disabled]="true">
+          <mat-error *ngIf="form.get('client')?.invalid">{{ getErrorMessage('client') }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width" formControlName="item">
+          <mat-label>Cliente</mat-label>
+          <input type="text" matInput required [value]="form.get('item')?.value?.numSerie" [disabled]="true">
+          <mat-error *ngIf="form.get('item')?.invalid">{{ getErrorMessage('item') }}</mat-error>
+        </mat-form-field>
 
         <mat-form-field class="full-width">
           <mat-label>Data de locaçãp</mat-label>
@@ -53,24 +70,13 @@
           <mat-error *ngIf="form.get('expectedReturnDate')?.invalid">{{ getErrorMessage('expectedReturnDate') }}</mat-error>
         </mat-form-field>
 
-        <mat-form-field class="full-width">
-          <mat-label>Data de Retorno</mat-label>
-          <input maxlength="40" matInput formControlName="returnDate" #returnDate>
-          <!-- <mat-error *ngIf="form.get('returnDate')?.invalid">{{ getErrorMessage('returnDate') }}</mat-error> -->
-        </mat-form-field>
-
-        <mat-form-field class="full-width">
-          <mat-label>Multa Cobrada</mat-label>
-          <input type="number" matInput formControlName="fineCharged">
-          <!-- <mat-error *ngIf="form.get('fineCharged')?.invalid">{{ getErrorMessage('fineCharged') }}</mat-error> -->
-        </mat-form-field>
-
         <mat-card-actions class="buttons">
           <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="!form.valid">Salvar</button>
           <button mat-button (click)="onCancel()" >Cancelar</button>
         </mat-card-actions>
 
       </ng-container>
+
 
     </mat-card-content>
 

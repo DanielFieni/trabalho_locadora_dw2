@@ -15,7 +15,7 @@ public interface ClientRepository extends JpaRepository<Client, Integer> {
         WHERE c.active AND 
         (
             SELECT count(r) FROM Rent r
-            WHERE r.client = c AND r.fineCharged = 0 AND r.paid = false
+            WHERE r.client = c AND r.paid = false
         ) = 0
         """)
     List<Client> findAllClientsIsActiveAndNotDebit();

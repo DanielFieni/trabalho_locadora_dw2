@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, NonNullableFormBuilder } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
+import { finalize } from 'rxjs';
 import { Client } from 'src/app/models/client';
 import { Item } from 'src/app/models/item';
 import { Rent } from 'src/app/models/rent';
@@ -48,9 +49,7 @@ export class RentFormComponent implements OnInit {
     });
 
     this.exists = this.rent._id !== undefined && this.rent._id !== null;
-    if (this.rent) this.form.patchValue(this.rent);
-    // this.loadData(new Date());
-    this.form.patchValue(this.rent)
+    if (this.rent) this.form.patchValue(this.rent)
     this.fillClients();
     this.fillItems();
 
@@ -116,7 +115,6 @@ export class RentFormComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.form.value);
     this.rentService.save(this.form.value).subscribe({
       next: result => this.formService.onSuccess("Locação"),
       error: error => this.formService.onError(error.error, "Locação")
@@ -125,6 +123,18 @@ export class RentFormComponent implements OnInit {
 
   onCancel() {
     this.formService.cancel();
+  }
+
+  makeReturn() {
+    let returnDate = new Date();
+    let expectedReturnDate = new Date(this.rent.expectedReturnDate);
+    let fineCharged = 0
+    if(returnDate.getTime() > expectedReturnDate.getTime()) {
+      fineCharged = this.form.value.amountCharged + this.form.value.item.title.aclass.valueClass;
+    }
+    this.form.controls['returnDate'].setValue(returnDate.toLocaleDateString('pt-BR'));
+    this.form.controls['fineCharged'].setValue(fineCharged);
+    this.onSubmit();
   }
 
 }

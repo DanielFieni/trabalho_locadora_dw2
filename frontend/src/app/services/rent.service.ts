@@ -31,6 +31,10 @@ export class RentService {
     return this.http_client.get<Rent>(`${this.API}/${id}`);
   }
 
+  makePayment (id: string) {
+    return this.http_client.patch(`${this.API}/${id}`, null);
+  }
+
   private create(rent: Partial<Rent>) {
     return this.http_client.post(this.API, rent);
   }

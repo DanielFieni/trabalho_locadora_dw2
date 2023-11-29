@@ -37,7 +37,7 @@ public class Rent implements Serializable {
     @Column(name = "fineCharged")
     private double fineCharged;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "client_id", nullable = false)
     private Client client;
 

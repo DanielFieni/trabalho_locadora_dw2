@@ -15,7 +15,7 @@ import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/err
 })
 export class RentComponent implements OnInit {
 
-  displayedColumns = ['client', 'item', 'rentalDate', 'expectedReturnDate', 'returnDate', 'amountCharged', 'fineCharged', 'paid', 'actions'];
+  displayedColumns = ['client', 'item', 'rentalDate', 'expectedReturnDate', 'returnDate', 'amountCharged', 'fineCharged', 'paid', 'finePay', 'actions'];
   rents!: MatTableDataSource<Rent>
 
   constructor(
@@ -34,6 +34,16 @@ export class RentComponent implements OnInit {
       next: (res) => { this.rents = new MatTableDataSource(res as Rent[]); console.log(res)},
       error: (error) => { this.onError(error.error.error) }
     })
+  }
+
+  checkRentAvailable(rent: Rent) {
+    if (rent.paid) {
+      return true;
+    } else if (!rent.paid && rent.returnDate != null) {
+      return false;
+    }
+
+    return true;
   }
 
   onAdd() {
@@ -75,6 +85,20 @@ export class RentComponent implements OnInit {
 
   onEdit(rent: Rent) {
     this.router.navigate(['rents/edit/' + rent._id]);
+  }
+
+  makePayment(rent: Rent) {
+    this.rentService.makePayment(rent._id).subscribe({
+      next: () => {
+        this.getRentList();
+        this._snackBar.open("Pagamento realizado com sucesso!", "X", {
+          duration: 4000,
+          horizontalPosition: "center",
+          verticalPosition: "top",
+        });
+      },
+      error: error => { this.onError(error.error) }
+    })
   }
 
 }

@@ -49,11 +49,21 @@
       <mat-cell *matCellDef="let rent"> {{ rent.fineCharged }} </mat-cell>
     </ng-container>
 
-    <<ng-container matColumnDef="paid">
+    <ng-container matColumnDef="paid">
       <mat-header-cell *matHeaderCellDef> Status Pagamento </mat-header-cell>
       <mat-cell *matCellDef="let rent">
         <ng-container *ngIf="rent.paid">Pago</ng-container>
         <ng-container *ngIf="!rent.paid">Não Pago</ng-container>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="finePay">
+      <mat-header-cell *matHeaderCellDef> Pagar Multa </mat-header-cell>
+      <mat-cell *matCellDef="let rent">
+        <button mat-icon-button color="warn" aria-label="Excluir Locação" matTooltip="Pagar locação"
+        (click)="makePayment(rent)" [disabled]="checkRentAvailable(rent)">
+          <mat-icon>paid</mat-icon>
+        </button>
       </mat-cell>
     </ng-container>
 
@@ -66,17 +76,15 @@
       </mat-header-cell>
 
       <mat-cell *matCellDef="let rent" class="action-column">
-        <button mat-icon-button color="accent" aria-label="Editar Locação" (click)="onEdit(rent)">
-          <mat-icon>edit</mat-icon>
-        </button>
+        <ng-container *ngIf="!rent.paid">
+          <button mat-icon-button color="accent" aria-label="Editar Locação" (click)="onEdit(rent)">
+            <mat-icon>edit</mat-icon>
+          </button>
 
-        <button mat-icon-button color="warn" aria-label="Excluir Locação" (click)="onDelete(rent)">
-          <mat-icon>delete</mat-icon>
-        </button>
-
-        <!-- <button mat-icon-button color="warn" aria-label="" (click)="onDelete(rent)">
-          <mat-icon>delete</mat-icon>
-        </button> -->
+          <button mat-icon-button color="warn" aria-label="Excluir Locação" (click)="onDelete(rent)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </ng-container>
 
       </mat-cell>
 
