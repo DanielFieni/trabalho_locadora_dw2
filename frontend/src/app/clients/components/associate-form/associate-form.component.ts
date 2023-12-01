@@ -6,24 +6,10 @@ import { Associate } from 'src/app/models/associate';
 import { AssociateService } from 'src/app/services/associate.service';
 import { FormService } from 'src/app/services/form.service';
 
-export const MY_DATE_FORMATS = {
-  parse: {
-      dateInput: 'DD/MM/YYYY',
-  },
-  display: {
-      dateInput: 'DD/MM/YYYY',
-      monthYearLabel: 'MMM YYYY',
-      dateA11yLabel: 'LL',
-      monthYearA11yLabel: 'MMMM YYYY',
-  },
-};
 @Component({
   selector: 'app-associate-form',
   templateUrl: './associate-form.component.html',
   styleUrls: ['./associate-form.component.scss'],
-  providers: [
-    { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS }
-  ]
 })
 export class AssociateFormComponent implements OnInit {
 
@@ -62,9 +48,6 @@ export class AssociateFormComponent implements OnInit {
   }
 
   onSubmit() {
-    let date = new Date(this.form.value.dtBirth);
-    let dateString = date.toLocaleDateString('pt-BR');
-    this.form.controls['dtBirth'].setValue(dateString);
     this.associateService.save(this.form.value).subscribe({
       next: result => this.formService.onSuccess("Associado"),
       error: error => this.formService.onError("Erro ao inserir Associado", "Associado")

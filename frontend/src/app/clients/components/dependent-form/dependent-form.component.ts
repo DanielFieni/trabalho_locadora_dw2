@@ -8,25 +8,10 @@ import { AssociateService } from 'src/app/services/associate.service';
 import { DependentService } from 'src/app/services/dependent.service';
 import { FormService } from 'src/app/services/form.service';
 
-export const MY_DATE_FORMATS = {
-  parse: {
-      dateInput: 'DD/MM/YYYY',
-  },
-  display: {
-      dateInput: 'DD/MM/YYYY',
-      monthYearLabel: 'MMM YYYY',
-      dateA11yLabel: 'LL',
-      monthYearA11yLabel: 'MMMM YYYY',
-  },
-};
-
 @Component({
   selector: 'app-dependent-form',
   templateUrl: './dependent-form.component.html',
   styleUrls: ['./dependent-form.component.scss'],
-  providers: [
-    { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS }
-  ]
 })
 export class DependentFormComponent implements OnInit {
 
@@ -74,9 +59,6 @@ export class DependentFormComponent implements OnInit {
   }
 
   onSubmit() {
-    let date = new Date(this.form.value.dtBirth);
-    let dateString = date.toLocaleDateString('pt-BR');
-    this.form.controls['dtBirth'].setValue(dateString);
     console.log(this.form.value);
     this.dependentService.save(this.form.value).subscribe({
       next: result => this.formService.onSuccess("Dependente"),

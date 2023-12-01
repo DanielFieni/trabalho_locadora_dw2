@@ -14,11 +14,9 @@
       </mat-form-field>
 
       <mat-form-field class="full-width">
-        <mat-label>Data de nascimento</mat-label>
-        <input matInput [matDatepicker]="picker" formControlName="dtBirth">
-        <mat-hint>MM/DD/YYYY</mat-hint>
-        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
+        <mat-label>Data de Nascimento</mat-label>
+        <input type="text" matInput required formControlName="dtBirth">
+        <mat-error *ngIf="form.get('dtBirth')?.invalid">{{ getErrorMessage('dtBirth') }}</mat-error>
       </mat-form-field>
 
       <mat-form-field class="full-width">
