@@ -34,7 +34,7 @@ public class Title implements Serializable {
     @Column(name = "category", columnDefinition = "varchar(50)")
     private String category;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "title_actor",
             joinColumns = @JoinColumn(name = "title_id"),

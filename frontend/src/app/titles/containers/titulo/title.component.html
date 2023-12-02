@@ -1,8 +1,8 @@
 <div class="table-container">
 
   <mat-form-field>
-    <mat-label>Pesquisar Titulo</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Informe um nome" #input>
+    <mat-label>Pesquisar Título</mat-label>
+    <input matInput (input)="applyFilterByYear($event)" placeholder="Informe um ano">
   </mat-form-field>
 
   <mat-table [dataSource]="titles" class="mat-elevation-z8">
@@ -66,9 +66,9 @@
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 
-    <tr class="mat-row" *matNoDataRow>
+    <!-- <tr class="mat-row" *matNoDataRow>
       <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
-    </tr>
+    </tr> -->
 
   </mat-table>
 </div>

@@ -84,6 +84,13 @@ export class TitleComponent implements OnInit{
     this.titles.filter = filterValue.trim().toLowerCase();
   }
 
+  // Filter By Year
+  applyFilterByYear(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.titles.filter = filterValue.trim().toLowerCase();
+  }
+
+
   dialogDescription(title: Title) {
     this.dialog.open(InformationDialogComponent, {
       data: title,

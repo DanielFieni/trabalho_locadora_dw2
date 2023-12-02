@@ -1,0 +1,27 @@
+.content-container {
+  margin-top: 10px;
+}
+
+table {
+  width: 100%;
+}
+
+.table-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 80%;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+button {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.full-width {
+  width: 100%;
+}
+

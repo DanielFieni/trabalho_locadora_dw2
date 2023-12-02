@@ -34,6 +34,10 @@ const routes: Routes = [
     path: 'rents',
     loadChildren: () => import('./rents/rents.module').then(m => m.RentsModule)
   },
+  {
+    path: 'filters',
+    loadChildren: () => import('./filter/filter.module').then(m => m.FilterModule)
+  }
 ];
 
 @NgModule({

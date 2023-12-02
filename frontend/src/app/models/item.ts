@@ -1,4 +1,4 @@
-import { Title } from "@angular/platform-browser";
+import { Title } from "./title"
 
 export interface Item{
 
