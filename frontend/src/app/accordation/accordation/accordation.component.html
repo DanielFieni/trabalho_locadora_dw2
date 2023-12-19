@@ -142,3 +142,23 @@
     </div>
   </mat-expansion-panel>
 </mat-accordion>
+
+<mat-accordion class="expansion-panel">
+  <mat-expansion-panel (opened)="panelOpenState = true"
+                       (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Pesquisar
+      </mat-panel-title>
+      <mat-panel-description>
+        Visualizar informações das Locações
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div class="content-container">
+      <p>Nessa aba será possível pesquisar as informações das Locações.</p>
+      <div class="button-content">
+        <button mat-raised-button color="warn" (click)="pageFilter()">Acessar</button>
+      </div>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>

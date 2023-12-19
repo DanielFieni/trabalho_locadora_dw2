@@ -47,6 +47,10 @@ export class AppComponent implements OnInit {
     this.router.navigate(['rents']);
   }
 
+  pageFilter() {
+    this.router.navigate(['filters']);
+  }
+
   ngOnInit(): void {
   }
 

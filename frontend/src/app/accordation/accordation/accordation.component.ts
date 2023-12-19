@@ -41,4 +41,8 @@ export class AccordationComponent implements OnInit {
     this.router.navigate(['rents']);
   }
 
+  pageFilter() {
+    this.router.navigate(['filters']);
+  }
+
 }
