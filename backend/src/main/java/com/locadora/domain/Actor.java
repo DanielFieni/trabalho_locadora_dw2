@@ -25,4 +25,8 @@ public class Actor implements Serializable {
     @ManyToMany(mappedBy = "actors")
     private List<Title> titles;
 
+    public Actor(String name) {
+        this.name = name;
+    }
+
 }

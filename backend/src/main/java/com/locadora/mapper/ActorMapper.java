@@ -12,3 +12,4 @@ import org.mapstruct.Mapper;
 public abstract class ActorMapper implements EntityMapper<Actor, ActorDTO> {
 
 }
+
